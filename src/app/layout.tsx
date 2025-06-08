@@ -29,6 +29,7 @@ export const viewport: Viewport = {
 
 const robot = Roboto({
   preload: true,
+  subsets: ["latin", "math", "symbols"],
   style: ["italic", "normal"],
   weight: ["100", "300", "400", "500", "700", "900"],
   display: "block",
