@@ -1,29 +1,33 @@
 name: Nextjs deploy to square cloud
 
 on:
-    push:
-        branches: 
-            - main
+  push:
+    branches: 
+      - main
+ 
+concurrency:
+  group: ci-deploy-$j{{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-    deploy:
-        name: Deploy
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with: 
-                node-version: 22
-                cache: npm
-            
-            - name: Build the app
-              run: chmod u+x ./scripts/build.sh ; ./scripts/build.sh
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: 22
+          cache: npm
+      
+      - name: Build the app
+        run: chmod u+x ./scripts/build.sh ; ./scripts/build.sh
 
-            - name: Setup Square Cloud CLI
-              run: curl -fsSL https://cli.squarecloud.app/install | bash
+      - name: Setup Square Cloud CLI
+        run: curl -fsSL https://cli.squarecloud.app/install | bash
 
-            - name: Commit to Square Cloud
-              run: |
-                cd __package
-                squarecloud auth login --token=${{ secrets.SQUARE_TOKEN }}
-                squarecloud app commit -r ${{ secrets.SQUARE_APP_ID }}
+      - name: Commit to Square Cloud
+        run: |
+          cd __package
+          squarecloud auth login --token=${{ secrets.SQUARE_TOKEN }}
+          squarecloud app commit -r ${{ secrets.SQUARE_APP_ID }}
