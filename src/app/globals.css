@@ -1,26 +1,180 @@
+@import "../styles/app.css";
+
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+/***********************************************************
+ ** THEME
+ ***********************************************************/
+@theme {
+  /* COLORS */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --transparent: transparent;
+
+  --color-backgrond: #f8f8f8;
+  --color-d-backgrond: #100f13;
+
+  --color-yellow-900: #c57c10;
+  --color-yellow-700: #f3a002;
+  --color-yellow-600: #ffb900;
+  --color-yellow-500: #ffc700;
+
+  --color-tangerine-600: #ff7a00;
+
+  --color-blue-500: #0066ff;
+
+  --color-gray-800: #242e3c;
+  --color-gray-600: #4c4e59;
+  --color-gray-300: #d7d9e1;
+  --color-gray-200: #e9ebf1;
+  --color-gray-100: #f3f5f8;
+
+  --color-d-gray-800: #dbe3ed;
+  --color-d-gray-600: #a9adb4;
+  --color-d-gray-300: #3e404f;
+  --color-d-gray-200: #252628;
+  --color-d-gray-100: #1d1f22;
+
+  --color-violet-500: #8f00ff;
+
+  --color-red-700: #b91c1c;
+  --color-red-600: #e02929;
+
+  --color-green-500: #1bb82b;
+
+  /* SIZINGS */
+  --container-main-expanded: calc(1244 / 16rem);
+  --container-main: calc(1152 / 16rem);
+  --container-md: calc(1048 / 16rem);
+  --container-sm: calc(748 / 16rem);
+  --container-xs: calc(480 / 16rem);
+  --container-2xs: calc(380 / 16rem);
+
+  --font-sans: Roboto, ui-sans-serif, sans-serif, system-ui;
+  --font-default: var(--font-sans);
+
+  /* ANIMATES */
+  --animate-indeterminate: indeterminate 1s infinite ease-in;
+  --animate-sheet-swipe-in-from-top: sheetSwipeInFromTop 150ms ease-out;
+  --animate-sheet-swipe-in-to-top: sheetSwipeInToTop 150ms ease-in;
+
+  --animate-sheet-swipe-in-from-bottom: sheetSwipeInFromBottom 150ms ease-out;
+  --animate-sheet-swipe-in-to-bottom: sheetSwipeInToBottom 150ms ease-in;
+
+  --animate-sheet-swipe-in-from-left: sheetSwipeInFromLeft 150ms ease-out;
+  --animate-sheet-swipe-in-to-left: sheetSwipeInToLeft 150ms ease-in;
+
+  --animate-sheet-swipe-in-from-right: sheetSwipeInFromRight 150ms ease-out;
+  --animate-sheet-swipe-in-to-right: sheetSwipeInToRight 150ms ease-in;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@custom-variant prose-inline-code (& :is(:where(:not(pre)>code):not(:where([class~="not-prose"] *))));
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/***********************************************************
+ ** KEYFRAMES
+ ***********************************************************/
+@keyframes indeterminate {
+  0% {
+    transform: translateX(0), scaleX(0);
+  }
+  40% {
+    transform: translateX(0), scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%), scaleX(0.5);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes sheetSwipeInFromTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheetSwipeInToTop {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sheetSwipeInFromBottom {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheetSwipeInToBottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sheetSwipeInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes sheetSwipeInToLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes sheetSwipeInFromRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes sheetSwipeInToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@layer base {
+  html {
+    height: 100%;
+  }
+
+  body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    @apply not-dark:bg-backgrond dark:bg-d-backgrond not-dark:text-black dark:text-white;
+  }
+
+  /* Decoration containing the actual text */
+  /* .Tiptap-mathematics-editor { */
+  /* … */
+  /* } */
+
+  /* Container of the KaTeX rendering */
+  /* .Tiptap-mathematics-render { */
+  /* … */
+  /* } */
 }

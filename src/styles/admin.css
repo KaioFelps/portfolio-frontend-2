@@ -1,0 +1,76 @@
+@layer components {
+  .dropdown {
+    @apply rounded-xl border border-d-gray-200 bg-d-backgrond p-1 shadow-sm outline-none z-10;
+  }
+}
+
+@layer base {
+  body {
+    @apply !bg-d-backgrond text-white;
+  }
+
+  .form-floating {
+    @apply relative;
+  }
+
+  .form-control {
+    @apply px-6 py-3 bg-transparent border border-d-gray-300 rounded-lg text-d-gray-800
+        focus:outline-none ring-0 ring-yellow-500/20
+        focus-within:ring-4 transition-[shadow] focus-within:border-yellow-900;
+  }
+
+  .form-floating > label,
+  .form-select-floating > label {
+    @apply px-6 py-3 text-d-gray-600 font-medium
+        absolute top-0 left-0 z-[2] h-full overflow-hidden text-start overflow-ellipsis whitespace-nowrap
+        pointer-events-none [transform-origin:0_0] transition-[opacity_.1s_ease-in-out,_transform_.1s_ease-in-out];
+  }
+
+  .form-select-control[data-placeholder] ~ label {
+    @apply absolute left-0;
+  }
+
+  .form-floating > .form-control {
+    @apply placeholder:sr-only placeholder:text-transparent;
+  }
+
+  .form-floating > .form-control:disabled {
+    @apply bg-d-gray-300;
+  }
+
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label,
+  .form-floating > .form-select ~ label,
+  .form-select-floating > .form-select-control:focus ~ label,
+  .form-select-floating
+    > .form-select-control:not(span):not(:placeholder-shown)
+    ~ label,
+  .form-select-floating > .form-select-select ~ label,
+  .form-select-floating > .form-select-control:not([data-placeholder]) ~ label {
+    @apply opacity-100 scale-75 -translate-y-4 translate-x-2 z-10 py-2.5 h-fit text-black
+        after:absolute after:inset-x-4 after:inset-y-2 after:bg-yellow-900 after:rounded-lg after:-z-[1];
+  }
+
+  .form-select-floating {
+    @apply relative px-6 py-3 bg-transparent border border-d-gray-300 rounded-lg text-d-gray-800
+        outline-none ring-0 ring-yellow-500/20
+        focus-within:ring-4 transition-[shadow] focus-within:border-yellow-900;
+  }
+
+  h1,
+  h2 {
+    @apply !font-bold !text-3xl;
+  }
+
+  .btn.ghost {
+    @apply font-normal text-white border-d-gray-200 bg-d-gray-100 rounded-lg px-4 py-3;
+  }
+
+  .btn.danger {
+    @apply font-normal text-white rounded-lg px-4 py-3;
+  }
+
+  .btn.default {
+    @apply font-normal rounded-lg px-4 py-3;
+  }
+}
