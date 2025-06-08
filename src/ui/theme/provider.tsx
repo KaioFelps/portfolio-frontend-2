@@ -8,22 +8,14 @@ type ThemeProviderProps = PropsWithChildren<{
   themeCookieKey: string;
 }>;
 
-const themeFromHtmlOrDefault = (): ThemeOptions => {
-  if (typeof window === "undefined") return "light";
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
-};
-
 export function ThemeProvider({
   children,
   themeCookieKey,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<ThemeOptions>(themeFromHtmlOrDefault());
+  const [theme, setTheme] = useState<ThemeOptions | null>(null);
 
   useEffect(() => {
-    const theme =
-      getThemeCookie(themeCookieKey, document.cookie) ??
-      themeFromHtmlOrDefault();
-
+    const theme = getThemeCookie(themeCookieKey, document.cookie);
     setTheme(theme);
   }, [themeCookieKey]);
 
