@@ -3,9 +3,15 @@
 import { useState, type PropsWithChildren } from "react";
 import { ThemeContext, type ThemeOptions } from ".";
 import { getThemeCookie } from "@/utils/theme";
-import { PublicEnv } from "@/config/env";
 
-export function ThemeProvider({ children }: PropsWithChildren) {
+type ThemeProviderProps = PropsWithChildren<{
+  themeCookieKey: string;
+}>;
+
+export function ThemeProvider({
+  children,
+  themeCookieKey,
+}: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeOptions>("light");
 
   return (
@@ -15,10 +21,10 @@ export function ThemeProvider({ children }: PropsWithChildren) {
         toggleTheme() {
           if (!window || !document) return;
 
-          const currentTheme = getThemeCookie(document.cookie);
+          const currentTheme = getThemeCookie(themeCookieKey, document.cookie);
           const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-          document.cookie = `${PublicEnv.themeCookieKey}=${newTheme}; path=/; SameSite=lax`;
+          document.cookie = `${themeCookieKey}=${newTheme}; path=/; SameSite=lax`;
           setTheme(newTheme);
 
           if (newTheme === "dark") {

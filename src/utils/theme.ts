@@ -1,9 +1,11 @@
-import { PublicEnv } from "@/config/env";
 import type { ThemeOptions } from "@/ui/theme";
 
 const availableThemes: ThemeOptions[] = ["light", "dark"];
 
-export function getThemeCookie(cookieString: string): ThemeOptions | null {
+export function getThemeCookie(
+  themeCookieKey: string,
+  cookieString: string,
+): ThemeOptions | null {
   const cookies: Map<string, string> = new Map();
 
   for (const cookie of cookieString.split("; ")) {
@@ -12,7 +14,7 @@ export function getThemeCookie(cookieString: string): ThemeOptions | null {
     cookies.set(key, value);
   }
 
-  const theme = cookies.get(PublicEnv.themeCookieKey);
+  const theme = cookies.get(themeCookieKey);
 
   if (!theme) return null;
 

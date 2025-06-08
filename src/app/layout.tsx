@@ -2,21 +2,21 @@ import "./globals.css";
 
 import { ProgressBar } from "@/ui/progress-bar";
 import type { Metadata, Viewport } from "next";
-import { PublicEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env";
 import { cookies } from "next/headers";
 import type { ThemeOptions } from "@/ui/theme";
 
 export const metadata: Metadata = {
-  title: PublicEnv.appName,
+  title: ServerEnv.appName,
   description:
     "Programador; Desenvolvedor, Analista ou Engenheiro de software; Cientista da Computação. Alguma coisa do gênero.",
   openGraph: {
     locale: "pt_BR",
     type: "website",
-    siteName: PublicEnv.appName,
+    siteName: ServerEnv.appName,
   },
-  applicationName: PublicEnv.appName,
-  metadataBase: new URL(PublicEnv.appUrl),
+  applicationName: ServerEnv.appName,
+  metadataBase: new URL(ServerEnv.appUrl),
 };
 
 export const viewport: Viewport = {
@@ -31,7 +31,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const _cookies = await cookies();
-  const themeCookie = _cookies.get(PublicEnv.themeCookieKey)?.value as
+  const themeCookie = _cookies.get(ServerEnv.themeCookieKey)?.value as
     | ThemeOptions
     | undefined;
 
