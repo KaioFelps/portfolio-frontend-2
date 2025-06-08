@@ -1,5 +1,5 @@
 @layer base {
-  a {
+  a:not([role="button"]):not(.btn) {
     color: var(--color-yellow-900);
     font-weight: var(--font-weight-medium);
     transition: all var(--default-transition-timing-function) 150ms;
@@ -43,7 +43,7 @@
     }
     &:not(:disabled) {
       &:active {
-        filter: brightness(95);
+        filter: brightness(0.95);
       }
 
       &:focus {
@@ -53,9 +53,20 @@
   }
 
   .btn.default {
-    @apply bg-yellow-500
-    [&:not(:disabled)]:hover:bg-yellow-600 [&:not(:disabled)]:hover:scale-[1.01]
-    outline-yellow-600/30;
+    background: var(--color-yellow-500);
+
+    &:not(:disabled) {
+      outline-color: color-mix(
+        in oklab,
+        var(--color-yellow-600) 30%,
+        transparent
+      );
+
+      &:hover {
+        background: var(--color-yellow-600);
+        transform: scale(1.01);
+      }
+    }
   }
 
   .btn.ghost-dark {
