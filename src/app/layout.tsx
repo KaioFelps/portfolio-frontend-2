@@ -5,6 +5,8 @@ import type { Metadata, Viewport } from "next";
 import { ServerEnv } from "@/config/env";
 import { cookies } from "next/headers";
 import type { ThemeOptions } from "@/ui/theme";
+import { Roboto } from "next/font/google";
+import clsx from "clsx";
 
 export const metadata: Metadata = {
   title: ServerEnv.appName,
@@ -25,6 +27,13 @@ export const viewport: Viewport = {
   themeColor: "#FFC700",
 };
 
+const robot = Roboto({
+  preload: true,
+  style: ["italic", "normal"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  display: "block",
+});
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -36,19 +45,10 @@ export default async function RootLayout({
     | undefined;
 
   return (
-    <html lang="pt-BR" className={themeCookie === "dark" ? "dark" : undefined}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="pt-BR"
+      className={clsx(robot.className, themeCookie === "dark" && "dark")}
+    >
       <body>
         <ProgressBar>{children}</ProgressBar>
       </body>
