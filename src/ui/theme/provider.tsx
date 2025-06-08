@@ -19,8 +19,6 @@ export function ThemeProvider({
       value={{
         theme,
         toggleTheme() {
-          if (!window || !document) return;
-
           const currentTheme = getThemeCookie(themeCookieKey, document.cookie);
           const newTheme = currentTheme === "dark" ? "light" : "dark";
 
