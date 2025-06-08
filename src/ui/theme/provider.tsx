@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type PropsWithChildren } from "react";
+import { useEffect, useState, type PropsWithChildren } from "react";
 import { ThemeContext, type ThemeOptions } from ".";
 import { getThemeCookie } from "@/utils/theme";
 
@@ -12,7 +12,12 @@ export function ThemeProvider({
   children,
   themeCookieKey,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<ThemeOptions>("light");
+  const [theme, setTheme] = useState<ThemeOptions | null>(null);
+
+  useEffect(() => {
+    const theme = getThemeCookie(themeCookieKey, document.cookie);
+    setTheme(theme);
+  }, [themeCookieKey]);
 
   return (
     <ThemeContext.Provider

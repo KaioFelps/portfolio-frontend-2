@@ -3,8 +3,9 @@
 import { type PropsWithChildren, useContext } from "react";
 import { SunIcon } from "@phosphor-icons/react/dist/ssr/Sun";
 import { MoonStarsIcon } from "@phosphor-icons/react/dist/ssr/MoonStars";
-import clsx from "clsx";
+import { SpinnerIcon } from "@phosphor-icons/react/dist/ssr/Spinner";
 import { ThemeContext } from ".";
+import clsx from "clsx";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -23,12 +24,15 @@ export function ThemeToggle() {
         <IconWrapper>
           <MoonStarsIcon size={24} weight="bold" />
         </IconWrapper>
-      ) : (
+      ) : theme === "light" ? (
         <IconWrapper>
           <SunIcon size={24} weight="bold" />
         </IconWrapper>
+      ) : (
+        <IconWrapper>
+          <SpinnerIcon size={24} weight="bold" className="animate-spin" />
+        </IconWrapper>
       )}
-      {/* <SpinnerIcon size=24weight="bold" class="animate-spin" />; */}
     </button>
   );
 }
