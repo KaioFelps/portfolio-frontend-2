@@ -31,9 +31,9 @@ export function ThemeProvider({
           setTheme(newTheme);
 
           if (newTheme === "dark") {
-            document.documentElement.setAttribute("class", "dark");
+            document.documentElement.classList.add("class", "dark");
           } else {
-            document.documentElement.removeAttribute("class");
+            document.documentElement.classList.remove("dark");
           }
         },
       }}
