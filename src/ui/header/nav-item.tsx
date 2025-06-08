@@ -3,32 +3,23 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegments } from "next/navigation";
-import { type PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren, useCallback } from "react";
 
 type NavItemProps = PropsWithChildren<{
   href: string;
 }>;
+
 export function NavItem({ href, children }: NavItemProps) {
   const currentSegments = useSelectedLayoutSegments();
   const currentPath = usePathname();
 
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    if (currentPath === href) return setIsActive(true);
-
-    if (
-      currentSegments.length &&
-      href.startsWith(`/${currentSegments.join("/")}`)
-    )
-      return setIsActive(true);
-
-    setIsActive(false);
-  }, [currentPath, currentSegments, href]);
+  const isActive =
+    currentPath === href ||
+    (currentSegments.length &&
+      href.startsWith(`/${currentSegments.join("/")}`));
 
   return (
     <Link
-      data-active={isActive}
       href={href}
       className={clsx(
         "transition-all leading-none duration-75 text-black font-medium",
