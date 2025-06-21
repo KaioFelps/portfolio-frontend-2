@@ -16,5 +16,5 @@ swap_if_incoming() {
 swap_if_incoming public _public
 swap_if_incoming .next _next
 
-npm ci
+npm ci --omit=dev
 npm run start
