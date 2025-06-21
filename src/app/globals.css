@@ -46,12 +46,12 @@
   --color-green-500: #1bb82b;
 
   /* SIZINGS */
-  --container-main-expanded: calc(1244 / 16rem);
-  --container-main: calc(1152 / 16rem);
-  --container-md: calc(1048 / 16rem);
-  --container-sm: calc(748 / 16rem);
-  --container-xs: calc(480 / 16rem);
-  --container-2xs: calc(380 / 16rem);
+  --container-main-expanded: calc(1244rem / 16);
+  --container-main: calc(1152rem / 16);
+  --container-md: calc(1048rem / 16);
+  --container-sm: calc(748rem / 16);
+  --container-xs: calc(480rem / 16);
+  --container-2xs: calc(380rem / 16);
 
   --font-sans: Roboto, ui-sans-serif, sans-serif, system-ui;
   --font-default: var(--font-sans);
