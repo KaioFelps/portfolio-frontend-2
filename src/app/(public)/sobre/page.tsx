@@ -3,11 +3,11 @@ import { SocialMedias } from "@/config/social-media";
 import { getYearsFromNow } from "@/utils/index";
 import clsx from "clsx";
 
-export default function AboutMePage() {
-  const myBirthday = new Date("07/17/2005");
-  const myAge = getYearsFromNow(myBirthday);
+const myBirthday = new Date("07/17/2005");
+const startedStudyingAt = new Date("01/01/2022");
 
-  const startedStudyingAt = new Date("01/01/2022");
+export default function AboutMePage() {
+  const myAge = getYearsFromNow(myBirthday);
   const yearsStudying = getYearsFromNow(startedStudyingAt);
 
   return (
