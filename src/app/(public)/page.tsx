@@ -1,8 +1,11 @@
 import { Main } from "@/component/main";
+import { getCanonicalUrl } from "@/utils/canonical-url";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: await getCanonicalUrl("/") },
+};
 
 export default function Home() {
   return (
