@@ -1,11 +1,11 @@
 "use client";
 
 import { createContext } from "react";
-import type { ThemeOption } from ".";
+import type { ThemeOption, ThemeOptionWithoutSystem } from ".";
 
 interface IThemeContext {
   theme: ThemeOption | null;
-  actualTheme: Exclude<ThemeOption, "system"> | null;
+  actualTheme: ThemeOptionWithoutSystem | null;
   toggleTheme(): void;
 }
 export const ThemeContext = createContext<IThemeContext>({

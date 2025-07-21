@@ -14,3 +14,4 @@ export const THEME_STATE_MACHINE = {
 };
 
 export type ThemeOption = keyof typeof THEMES;
+export type ThemeOptionWithoutSystem = Exclude<ThemeOption, "system">;

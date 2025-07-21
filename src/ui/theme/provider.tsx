@@ -5,6 +5,7 @@ import {
   PREFERRED_THEME_COOKIE_KEY,
   THEME_COOKIE_KEY,
   THEME_STATE_MACHINE,
+  type ThemeOptionWithoutSystem,
   THEMES,
   type ThemeOption,
 } from ".";
@@ -21,10 +22,8 @@ type ThemeProviderProps = PropsWithChildren<{
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeOption | null>(null);
-  const [actualTheme, setActualTheme] = useState<Exclude<
-    ThemeOption,
-    "system"
-  > | null>(null);
+  const [actualTheme, setActualTheme] =
+    useState<ThemeOptionWithoutSystem | null>(null);
 
   useEffect(() => {
     const theme = getThemeCookie(THEME_COOKIE_KEY, document.cookie);

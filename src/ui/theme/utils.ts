@@ -1,4 +1,8 @@
-import { THEME_COOKIE_KEY, THEMES, type ThemeOption } from "@/ui/theme";
+import {
+  type ThemeOptionWithoutSystem,
+  THEMES,
+  type ThemeOption,
+} from "@/ui/theme";
 
 export const availableThemes: ThemeOption[] = [
   THEMES.dark,
@@ -37,7 +41,7 @@ export function getLeftThemes(currentTheme: ThemeOption): ThemeOption[] {
 export function resolveThemeIntoLightOrDark(
   theme: ThemeOption | undefined,
   preferredTheme: ThemeOption | undefined,
-): Exclude<ThemeOption, "system"> {
+): ThemeOptionWithoutSystem {
   if (theme === THEMES.dark) return "dark";
   if (theme === THEMES.light) return "light";
   return preferredTheme === "dark" ? "dark" : "light";
