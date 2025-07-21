@@ -4,9 +4,14 @@ import { ProgressBar } from "@/ui/progress-bar";
 import type { Metadata, Viewport } from "next";
 import { ServerEnv } from "@/config/env";
 import { cookies } from "next/headers";
-import type { ThemeOptions } from "@/ui/theme";
+import {
+  PREFERRED_THEME_COOKIE_KEY,
+  THEME_COOKIE_KEY,
+  type ThemeOption,
+} from "@/ui/theme";
 import { Roboto } from "next/font/google";
 import clsx from "clsx";
+import { resolveThemeIntoLightOrDark } from "@/ui/theme/utils";
 
 export const metadata: Metadata = {
   title: ServerEnv.appName,
@@ -41,14 +46,22 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const _cookies = await cookies();
-  const themeCookie = _cookies.get(ServerEnv.themeCookieKey)?.value as
-    | ThemeOptions
+  const themeFromCookies = _cookies.get(THEME_COOKIE_KEY)?.value as
+    | ThemeOption
     | undefined;
+
+  const preferredThemeFromCookies = _cookies.get(PREFERRED_THEME_COOKIE_KEY)
+    ?.value as ThemeOption | undefined;
+
+  const themeClass = resolveThemeIntoLightOrDark(
+    themeFromCookies,
+    preferredThemeFromCookies,
+  );
 
   return (
     <html
       lang="pt-BR"
-      className={clsx(robot.className, themeCookie === "dark" && "dark")}
+      className={clsx(robot.className, themeClass === "dark" && "dark")}
     >
       <body>
         <ProgressBar>{children}</ProgressBar>

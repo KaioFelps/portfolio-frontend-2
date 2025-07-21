@@ -1,23 +1,16 @@
-"use client";
-
-import { createContext } from "react";
+export const THEME_COOKIE_KEY = "kaio_felps_theme";
+export const PREFERRED_THEME_COOKIE_KEY = "kaio_felps_preferred_theme";
 
 export const THEMES = Object.freeze({
   dark: "dark",
   light: "light",
+  system: "system",
 });
 
-export type ThemeOptions = keyof typeof THEMES;
+export const THEME_STATE_MACHINE = {
+  [THEMES.dark]: THEMES.system,
+  [THEMES.system]: THEMES.light,
+  [THEMES.light]: THEMES.dark,
+};
 
-interface IThemeContext {
-  theme: ThemeOptions | null;
-  toggleTheme(): void;
-}
-export const ThemeContext = createContext<IThemeContext>({
-  theme: null,
-  toggleTheme() {
-    throw new Error(
-      "Não foi encontrado nenhum provider para o `ThemeContext`.",
-    );
-  },
-});
+export type ThemeOption = keyof typeof THEMES;
