@@ -1,10 +1,17 @@
 import { Main } from "@/component/main";
 import { SocialMedias } from "@/config/social-media";
+import { MetaUtilities } from "@/utils/meta";
 import { getYearsFromNow } from "@/utils/index";
 import clsx from "clsx";
+import type { Metadata } from "next";
 
 const myBirthday = new Date("07/17/2005");
 const startedStudyingAt = new Date("01/01/2022");
+
+export const metadata: Metadata = {
+  title: await MetaUtilities.getTitle("Sobre mim"),
+  alternates: { canonical: await MetaUtilities.getCanonicalUrl("/sobre") },
+};
 
 export default function AboutMePage() {
   const myAge = getYearsFromNow(myBirthday);
