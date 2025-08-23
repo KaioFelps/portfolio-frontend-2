@@ -2,8 +2,8 @@ import { Main } from "@/component/main";
 import { SocialMedias } from "@/config/social-media";
 import { MetaUtilities } from "@/utils/meta";
 import { getYearsFromNow } from "@/utils/index";
-import clsx from "clsx";
 import type { Metadata } from "next";
+import SectionHeader from "@/component/section-header";
 
 const myBirthday = new Date("07/17/2005");
 const startedStudyingAt = new Date("01/01/2022");
@@ -19,14 +19,9 @@ export default function AboutMePage() {
 
   return (
     <Main className="max-w-sm">
-      <h1
-        className={clsx(
-          "text-5xl font-bold text-center w-full px-12 pb-6 border-b",
-          "border-gray-300 dark:border-d-gray-300 mb-16",
-        )}
-      >
-        Sobre Mim
-      </h1>
+      <SectionHeader.Root className="mb-16">
+        <SectionHeader.Heading>Sobre Mim</SectionHeader.Heading>
+      </SectionHeader.Root>
 
       <div className="prose-p:mb-6 prose-p:last:mb-0 prose-p:text-xl text-balance text-center">
         <p>
