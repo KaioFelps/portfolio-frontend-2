@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --experimental-build-mode compile",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npx biome check --write"
   },
   "dependencies": {
     "@bprogress/next": "3.2.12",
