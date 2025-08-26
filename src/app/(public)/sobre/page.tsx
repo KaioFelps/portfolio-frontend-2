@@ -26,9 +26,9 @@ export default function AboutMePage() {
       <div className="prose-p:mb-6 prose-p:last:mb-0 prose-p:text-xl text-balance text-center">
         <p>
           Tenho {myAge} anos. Hoje, sou um graduando em Ciência da Computação
-          pela UTFPR-CM. Há {yearsStudying}
-          anos, venho estudando e me aprofundando cada vez mais em ambos os
-          polos do desenvolvimento web — front e back-end.
+          pela UTFPR-CM. Há {yearsStudying} anos, venho estudando e me
+          aprofundando cada vez mais em ambos os polos do desenvolvimento web —
+          front e back-end.
         </p>
 
         <p>
