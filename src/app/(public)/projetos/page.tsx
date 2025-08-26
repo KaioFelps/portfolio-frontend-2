@@ -1,13 +1,15 @@
+import clsx from "clsx";
+import type { Metadata } from "next";
+import { AlertBlock } from "@/component/alert-block";
 import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
-import { MetaUtilities } from "@/utils/meta";
-import type { Metadata } from "next";
-import { fetchProjects } from "./actions";
-import { AlertBlock } from "@/component/alert-block";
-import { ProjectCard } from "./card";
+import { ServerResponseBoundary } from "@/component/server-response-boundary";
 import type { PaginatedResponse } from "@/core/types/paginated-response";
 import type { Project } from "@/core/types/presented-entities/project";
-import clsx from "clsx";
+import { MetaUtilities } from "@/utils/meta";
+import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
+import { fetchProjects } from "./actions";
+import { ProjectCard } from "./card";
 
 export const metadata: Metadata = {
   title: await MetaUtilities.getTitle("Projetos"),
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-  const projects = await fetchProjects();
+  const projects = await tryOrServerInternalError(fetchProjects());
 
   return (
     <Main>
@@ -28,18 +30,22 @@ export default async function ProjectsPage() {
         <SectionHeader.Heading>Projetos</SectionHeader.Heading>
       </SectionHeader.Root>
 
-      {!projects.success ? (
-        <AlertBlock type="danger">{projects.error}</AlertBlock>
-      ) : (
-        <Content projects={projects.data} />
-      )}
+      <ServerResponseBoundary
+        data={projects}
+        fallbackComponent={({ error }) => (
+          <AlertBlock type="danger">{error}</AlertBlock>
+        )}
+        component={({ data }) => <Content projects={data} />}
+      />
     </Main>
   );
 }
 
 function Content({
   projects,
-}: { projects: PaginatedResponse<{ projects: Project[] }> }) {
+}: {
+  projects: PaginatedResponse<{ projects: Project[] }>;
+}) {
   if (projects.totalCount === 0)
     return (
       <AlertBlock type="warning">Ainda não há nenhum projeto 🫶</AlertBlock>
