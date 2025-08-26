@@ -1,8 +1,8 @@
-import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr/GithubLogo";
 import { BehanceLogoIcon } from "@phosphor-icons/react/dist/ssr/BehanceLogo";
+import { GithubLogoIcon } from "@phosphor-icons/react/dist/ssr/GithubLogo";
 import { LinkedinLogoIcon } from "@phosphor-icons/react/dist/ssr/LinkedinLogo";
-import { SocialMedias } from "@/config/social-media";
 import clsx from "clsx";
+import { SocialMedias } from "@/config/social-media";
 
 export function Footer() {
   return (

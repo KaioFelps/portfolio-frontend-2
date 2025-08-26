@@ -1,7 +1,7 @@
-import { Main } from "@/component/main";
-import { MetaUtilities } from "@/utils/meta";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import type { Metadata } from "next";
+import { Main } from "@/component/main";
+import { MetaUtilities } from "@/utils/meta";
 
 export const metadata: Metadata = {
   alternates: { canonical: await MetaUtilities.getCanonicalUrl("/") },

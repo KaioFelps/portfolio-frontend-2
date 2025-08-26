@@ -1,16 +1,16 @@
 import "./globals.css";
 
-import { ProgressBar } from "@/ui/progress-bar";
+import clsx from "clsx";
 import type { Metadata, Viewport } from "next";
-import { ServerEnv } from "@/config/env";
+import { Roboto } from "next/font/google";
 import { cookies } from "next/headers";
+import { ServerEnv } from "@/config/env";
+import { ProgressBar } from "@/ui/progress-bar";
 import {
   PREFERRED_THEME_COOKIE_KEY,
   THEME_COOKIE_KEY,
   type ThemeOption,
 } from "@/ui/theme";
-import { Roboto } from "next/font/google";
-import clsx from "clsx";
 import { resolveThemeIntoLightOrDark } from "@/ui/theme/utils";
 
 export const metadata: Metadata = {

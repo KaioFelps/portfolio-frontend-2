@@ -1,20 +1,19 @@
 "use client";
 
-import { useEffect, useState, type PropsWithChildren } from "react";
+import { type PropsWithChildren, useEffect, useState } from "react";
 import {
   PREFERRED_THEME_COOKIE_KEY,
   THEME_COOKIE_KEY,
   THEME_STATE_MACHINE,
-  type ThemeOptionWithoutSystem,
-  THEMES,
   type ThemeOption,
+  type ThemeOptionWithoutSystem,
 } from ".";
+import { ThemeContext } from "./context";
 import {
   getThemeCookie,
   resolveThemeIntoLightOrDark,
   saveThemeCookieClientSide,
 } from "./utils";
-import { ThemeContext } from "./context";
 
 type ThemeProviderProps = PropsWithChildren<{
   themeCookieKey: string;

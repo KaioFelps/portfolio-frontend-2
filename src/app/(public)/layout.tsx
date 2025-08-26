@@ -1,8 +1,8 @@
+import type { PropsWithChildren } from "react";
 import { ServerEnv } from "@/config/env";
 import { Footer } from "@/ui/footer";
 import { Header } from "@/ui/header";
 import { ThemeProvider } from "@/ui/theme/provider";
-import type { PropsWithChildren } from "react";
 
 export default function PublicLayout({ children }: PropsWithChildren) {
   return (

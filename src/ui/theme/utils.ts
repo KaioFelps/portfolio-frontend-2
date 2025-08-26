@@ -1,7 +1,7 @@
 import {
-  type ThemeOptionWithoutSystem,
   THEMES,
   type ThemeOption,
+  type ThemeOptionWithoutSystem,
 } from "@/ui/theme";
 
 export const availableThemes: ThemeOption[] = [

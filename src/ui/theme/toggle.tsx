@@ -1,12 +1,12 @@
 "use client";
 
-import { type PropsWithChildren, useContext } from "react";
-import { SunIcon } from "@phosphor-icons/react/dist/ssr/Sun";
-import { MoonStarsIcon } from "@phosphor-icons/react/dist/ssr/MoonStars";
-import { ThemeContext } from "./context";
-import clsx from "clsx";
 import { LaptopIcon } from "@phosphor-icons/react/dist/ssr/Laptop";
+import { MoonStarsIcon } from "@phosphor-icons/react/dist/ssr/MoonStars";
 import { SpinnerIcon } from "@phosphor-icons/react/dist/ssr/Spinner";
+import { SunIcon } from "@phosphor-icons/react/dist/ssr/Sun";
+import clsx from "clsx";
+import { type PropsWithChildren, useContext } from "react";
+import { ThemeContext } from "./context";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useContext(ThemeContext);
