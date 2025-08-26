@@ -3,7 +3,7 @@ type ErrorResponse<E> = { success: false; error: E };
 
 export type ServerResponse<T, E> = SuccessResponse<T> | ErrorResponse<E>;
 
-export class MakeServerResponse<T, E> {
+export abstract class MakeServerResponse {
   public static error<E, T = unknown>(error: E): ServerResponse<T, E> {
     return { success: false, error };
   }
