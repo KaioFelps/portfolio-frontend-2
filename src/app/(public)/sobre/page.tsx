@@ -1,9 +1,9 @@
-import { Main } from "@/component/main";
-import { SocialMedias } from "@/config/social-media";
-import { MetaUtilities } from "@/utils/meta";
-import { getYearsFromNow } from "@/utils/index";
 import type { Metadata } from "next";
+import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
+import { SocialMedias } from "@/config/social-media";
+import { getYearsFromNow } from "@/utils/index";
+import { MetaUtilities } from "@/utils/meta";
 
 const myBirthday = new Date("07/17/2005");
 const startedStudyingAt = new Date("01/01/2022");

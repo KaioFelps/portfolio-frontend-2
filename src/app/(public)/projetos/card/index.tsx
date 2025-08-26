@@ -1,5 +1,5 @@
-import type { Project } from "@/core/types/presented-entities/project";
 import clsx from "clsx";
+import type { Project } from "@/core/types/presented-entities/project";
 
 export function ProjectCard(project: Project) {
   return (

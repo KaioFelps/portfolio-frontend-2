@@ -1,3 +1,4 @@
+import { constants } from "node:http2";
 import { ServerEnv } from "@/config/env";
 import { ErrorMessages } from "@/core/error-messages";
 import type { PaginatedResponse } from "@/core/types/paginated-response";
@@ -6,7 +7,6 @@ import {
   MakeServerResponse,
   type ServerResponse,
 } from "@/core/types/server-response";
-import { constants } from "node:http2";
 
 type SuccessResponse = PaginatedResponse<{ projects: Project[] }>;
 
