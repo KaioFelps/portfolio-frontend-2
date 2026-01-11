@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import type { Project } from "@/core/types/presented-entities/project";
+import { LinksPopover } from "./links-popover";
 
 export function ProjectCard(project: Project) {
   return (
@@ -27,7 +28,7 @@ export function ProjectCard(project: Project) {
           {project.tags.map((tag) => (
             <a
               key={`${project.id}_tag_${tag.id}`}
-              href="/projetos?q={tag.value}&qb=tag"
+              href={`/projetos?q=${tag.value}&qb=tag`}
               className="group chip c-yellow c-clickable"
             >
               {tag.value}
@@ -35,7 +36,7 @@ export function ProjectCard(project: Project) {
           ))}
         </div>
 
-        {/* <LinksPopover {links} /> */}
+        <LinksPopover projectId={project.id} links={project.links} />
       </footer>
     </article>
   );
