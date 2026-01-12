@@ -39,5 +39,10 @@
       "quoteStyle": "double",
       "lineEnding": "lf"
     }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   }
 }
