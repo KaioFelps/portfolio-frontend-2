@@ -7,15 +7,28 @@ import {
   MakeServerResponse,
   type ServerResponse,
 } from "@/core/types/server-response";
+import { generateQueryString } from "@/utils/query";
 
 type SuccessResponse = PaginatedResponse<{ projects: Project[] }>;
 
-export async function fetchProjects(): Promise<
-  ServerResponse<SuccessResponse, string>
-> {
+type FetchProjectsQuery = {
+  readonly by: string;
+  readonly value: string;
+};
+
+type FetchProjectsArgs = {
+  query?: FetchProjectsQuery;
+};
+
+export async function fetchProjects({
+  query,
+}: FetchProjectsArgs): Promise<ServerResponse<SuccessResponse, string>> {
   "use server";
 
-  const endpoint = `${ServerEnv.backendUrl}/project/list`;
+  let endpoint = `${ServerEnv.backendUrl}/project/list`;
+
+  if (query) endpoint += generateQueryString({ [query.by]: query.value });
+
   const response = await fetch(endpoint, { method: "GET" });
 
   if (response.status === constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)

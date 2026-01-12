@@ -10,6 +10,7 @@ import { MetaUtilities } from "@/utils/meta";
 import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
 import { fetchProjects } from "./actions";
 import { ProjectCard } from "./card";
+import { ProjectsFilterForm } from "./filter-form";
 
 export const metadata: Metadata = {
   title: await MetaUtilities.getTitle("Projetos"),
@@ -21,13 +22,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ProjectsPage() {
-  const projects = await tryOrServerInternalError(fetchProjects());
+type Props = {
+  searchParams: Promise<Record<string, string | undefined>>;
+};
+
+export default async function ProjectsPage({ searchParams }: Props) {
+  const { q, qb } = await searchParams;
+  const query = q && qb ? { by: qb, value: q } : undefined;
+  const projects = await tryOrServerInternalError(fetchProjects({ query }));
 
   return (
     <Main>
-      <SectionHeader.Root className="justify-between">
+      <SectionHeader.Root className="justify-between items-center">
         <SectionHeader.Heading>Projetos</SectionHeader.Heading>
+        <ProjectsFilterForm />
       </SectionHeader.Root>
 
       <ServerResponseBoundary
