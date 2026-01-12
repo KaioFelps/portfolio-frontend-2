@@ -16,5 +16,6 @@ swap_if_incoming() {
 swap_if_incoming public _public
 swap_if_incoming .next _next
 
+cp .env .next/standalone/.env
 npm ci
 npm run start
