@@ -1,7 +1,6 @@
 "use client";
 
 import { SpinnerIcon } from "@phosphor-icons/react/dist/ssr/Spinner";
-import clsx from "clsx";
 import { useEffect, useState, useTransition } from "react";
 import { AlertBlock } from "@/component/alert-block";
 import type { PaginatedResponse } from "@/core/types/paginated-response";
@@ -9,6 +8,7 @@ import type { Project } from "@/core/types/presented-entities/project";
 import toast from "@/lib/toast";
 import { type FetchProjectsQuery, fetchProjects } from "./actions";
 import { ProjectCard } from "./card";
+import { ProjectsContainer } from "./projects-container";
 
 type Props = {
   initialData: PaginatedResponse<{ projects: Project[] }>;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export function Content({ initialData, projectsQuery: query }: Props) {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(initialData.projects);
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(1);
   const [pending, startTransition] = useTransition();
@@ -57,16 +57,7 @@ export function Content({ initialData, projectsQuery: query }: Props) {
 
   return (
     <div>
-      <div
-        className={clsx(
-          "grid grid-flow-row grid-cols-3 gap-12 w-full max-w-screen-main mt-16",
-          "max-lg:gap-6",
-          "max-md:grid-cols-2",
-          "max-sm:grid-cols-1",
-        )}
-      >
-        {projects.map(ProjectCard)}
-      </div>
+      <ProjectsContainer>{projects.map(ProjectCard)}</ProjectsContainer>
 
       {hasMore && (
         <button

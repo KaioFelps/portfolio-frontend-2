@@ -26,8 +26,6 @@ export async function fetchProjects({
   query,
   page,
 }: FetchProjectsArgs): Promise<ServerResponse<SuccessResponse, string>> {
-  "use server";
-
   let endpoint = `${ServerEnv.backendUrl}/project/list`;
 
   const queryParams = new URLSearchParams();
