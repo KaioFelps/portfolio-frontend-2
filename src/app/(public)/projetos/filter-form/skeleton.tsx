@@ -1,5 +1,13 @@
 export function FormSkeleton() {
   return (
-    <div className="rounded-full bg-gray-100 dark:bg-d-gray-100 animate-pulse" />
+    <div className="flex w-1/2 gap-4">
+      <div className="input leading-8 w-2/3 animate-pulse select-none">
+        &nbsp;
+      </div>
+
+      <div className="input leading-8 w-1/3 animate-pulse select-none">
+        &nbsp;
+      </div>
+    </div>
   );
 }
