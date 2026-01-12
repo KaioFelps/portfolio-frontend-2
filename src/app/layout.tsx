@@ -12,6 +12,7 @@ import {
   type ThemeOption,
 } from "@/ui/theme";
 import { resolveThemeIntoLightOrDark } from "@/ui/theme/utils";
+import { ToastProvider } from "@/ui/toast";
 
 export const metadata: Metadata = {
   title: ServerEnv.appName,
@@ -64,7 +65,9 @@ export default async function RootLayout({
       className={clsx(robot.className, themeClass === "dark" && "dark")}
     >
       <body>
-        <ProgressBar>{children}</ProgressBar>
+        <ToastProvider>
+          <ProgressBar>{children}</ProgressBar>
+        </ToastProvider>
       </body>
     </html>
   );
