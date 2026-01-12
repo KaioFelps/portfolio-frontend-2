@@ -1,5 +1,5 @@
 import { Popover } from "@base-ui/react/popover";
-import { PopoverArrow } from "./arrow";
+import { DroppableComponentArrow } from "../droppable-component-arrow";
 import { PopoverContent } from "./content";
 import { PopoverTrigger } from "./trigger";
 
@@ -9,5 +9,5 @@ export default {
   Content: PopoverContent,
   Title: Popover.Title,
   Description: Popover.Description,
-  Arrow: PopoverArrow,
+  Arrow: DroppableComponentArrow,
 };

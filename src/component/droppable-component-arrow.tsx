@@ -1,7 +1,7 @@
 import { Popover } from "@base-ui/react/popover";
 import clsx from "clsx";
 
-export function PopoverArrow() {
+export function DroppableComponentArrow() {
   return (
     <Popover.Arrow
       className={clsx(
@@ -35,9 +35,3 @@ export function ArrowSvg(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
-
-/**
-"text-gray-100 dark:text-d-gray-100 drop-shadow-[0_1px_0_var(--tw-shadow-color)]",
-									"shadow-gray-300 dark:shadow-black",
-									"data-[side=bottom]:drop-shadow-[0_-1px_0_var(--tw-shadow-color)]",
- */
