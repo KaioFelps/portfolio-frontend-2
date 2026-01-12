@@ -19,7 +19,7 @@ export default function AboutMePage() {
 
   return (
     <Main className="max-w-sm">
-      <SectionHeader.Root className="mb-16">
+      <SectionHeader.Root className="justify-center mb-16">
         <SectionHeader.Heading>Sobre Mim</SectionHeader.Heading>
       </SectionHeader.Root>
 
