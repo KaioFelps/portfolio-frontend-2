@@ -30,20 +30,24 @@ export function Form() {
     key?: string | null;
     value?: string;
     delay?: number;
+    triggeredBy: "input" | "select";
   };
 
   const handleQueryProjects = useCallback(
     ({
       key = queryBy?.value,
       value = query,
-      delay = 0,
-    }: HandleQueryProjectsArgs = {}) => {
+      delay = 500,
+      triggeredBy,
+    }: HandleQueryProjectsArgs) => {
       clearTimeout(queryFormTimeoutId.current);
       queryFormTimeoutId.current = setTimeout(() => {
-        if (value.trim() === "") return router.push(pathname);
         if (!key) return;
+        if (value.trim() === "") {
+          if (triggeredBy === "input") return router.push(pathname);
+          return;
+        }
 
-        console.log("handling", key, value);
         router.push(`?q=${value}&qb=${key}`);
       }, delay);
     },
@@ -79,7 +83,11 @@ export function Form() {
           onInput={(event) => {
             const query = event.currentTarget.value;
             setQuery(query);
-            handleQueryProjects({ value: query, delay: 1500 });
+            handleQueryProjects({
+              value: query,
+              delay: 500,
+              triggeredBy: "input",
+            });
           }}
         />
       </label>
@@ -89,7 +97,7 @@ export function Form() {
         value={queryBy?.value ?? null}
         onValueChange={(queryBy) => {
           setQueryBy(getQueryByValue(queryBy));
-          handleQueryProjects({ key: queryBy });
+          handleQueryProjects({ key: queryBy, triggeredBy: "select" });
         }}
         items={queryByOptions}
       >

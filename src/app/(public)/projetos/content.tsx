@@ -2,7 +2,7 @@
 
 import { SpinnerIcon } from "@phosphor-icons/react/dist/ssr/Spinner";
 import clsx from "clsx";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { AlertBlock } from "@/component/alert-block";
 import type { PaginatedResponse } from "@/core/types/paginated-response";
 import type { Project } from "@/core/types/presented-entities/project";
@@ -16,12 +16,16 @@ type Props = {
 };
 
 export function Content({ initialData, projectsQuery: query }: Props) {
-  const [projects, setProjects] = useState(initialData.projects);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(1);
   const [pending, startTransition] = useTransition();
-  const [hasMore, setHasMore] = useState(
-    initialData.projects.length < initialData.totalCount,
-  );
+
+  useEffect(() => {
+    setProjects(initialData.projects);
+    setHasMore(initialData.projects.length < initialData.totalCount);
+    setPage(initialData.page);
+  }, [initialData.projects, initialData.totalCount, initialData.page]);
 
   const loadMoreAction = async () => {
     const nextPage = page + 1;
