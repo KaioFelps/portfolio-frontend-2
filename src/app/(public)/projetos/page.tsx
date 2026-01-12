@@ -30,7 +30,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
 
   return (
     <Main>
-      <SectionHeader.Root className="justify-between items-center">
+      <SectionHeader.Root hasActions>
         <SectionHeader.Heading>Projetos</SectionHeader.Heading>
         <ProjectsFilterForm />
       </SectionHeader.Root>
