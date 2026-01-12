@@ -19,9 +19,12 @@ jobs:
         with: 
           node-version: 22
           cache: npm
+        
+      - name: Make scripts executable
+        run: chmod u+x ./scripts/*
       
       - name: Build the app
-        run: chmod u+x ./scripts/build.sh ; ./scripts/build.sh
+        run: ./scripts/build.sh
 
       - name: Setup Square Cloud CLI
         run: curl -fsSL https://cli.squarecloud.app/install | bash

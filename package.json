@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --experimental-build-mode compile",
-    "start": "next start",
+    "build": "next build --experimental-build-mode compile && ./scripts/copy-assets.ts",
+    "start": "node .next/standalone/server.js",
     "lint": "npx biome check --write"
   },
   "dependencies": {
