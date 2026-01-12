@@ -1,3 +1,5 @@
+"use server";
+
 import { constants } from "node:http2";
 import { ServerEnv } from "@/config/env";
 import { ErrorMessages } from "@/core/error-messages";
@@ -7,28 +9,33 @@ import {
   MakeServerResponse,
   type ServerResponse,
 } from "@/core/types/server-response";
-import { generateQueryString } from "@/utils/query";
 
 type SuccessResponse = PaginatedResponse<{ projects: Project[] }>;
 
-type FetchProjectsQuery = {
+export type FetchProjectsQuery = {
   readonly by: string;
   readonly value: string;
 };
 
 type FetchProjectsArgs = {
   query?: FetchProjectsQuery;
+  page?: number;
 };
 
 export async function fetchProjects({
   query,
+  page,
 }: FetchProjectsArgs): Promise<ServerResponse<SuccessResponse, string>> {
   "use server";
 
   let endpoint = `${ServerEnv.backendUrl}/project/list`;
 
-  if (query) endpoint += generateQueryString({ [query.by]: query.value });
+  const queryParams = new URLSearchParams();
 
+  if (page) queryParams.set("page", page.toString());
+  if (query) queryParams.set(query.by, query.value);
+
+  endpoint += `?${queryParams.toString()}`;
   const response = await fetch(endpoint, { method: "GET" });
 
   if (response.status === constants.HTTP_STATUS_INTERNAL_SERVER_ERROR)
