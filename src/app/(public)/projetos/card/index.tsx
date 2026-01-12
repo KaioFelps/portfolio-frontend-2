@@ -36,7 +36,9 @@ export function ProjectCard(project: Project) {
           ))}
         </div>
 
-        <LinksPopover projectId={project.id} links={project.links} />
+        {project.links.length > 0 && (
+          <LinksPopover projectId={project.id} links={project.links} />
+        )}
       </footer>
     </article>
   );
