@@ -13,7 +13,7 @@ export function SelectTrigger({ label }: Props) {
       <CaretUpIcon
         size="24"
         weight="regular"
-        className="data-popup-open:rotate-180 transition-all duration-300"
+        className="group-data-popup-open:rotate-180 transition-all duration-300"
       />
     </Select.Trigger>
   );
