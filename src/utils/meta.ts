@@ -3,7 +3,9 @@ import { ServerEnv } from "@/config/env";
 export abstract class MetaUtilities {
   public static async getCanonicalUrl(path: string): Promise<string> {
     "use server";
-    return `${ServerEnv.appUrl}${path}`;
+    const canonicalUrl = `${ServerEnv.appUrl}${path}`;
+    console.debug(canonicalUrl);
+    return canonicalUrl;
   }
 
   public static async getTitle(title: string): Promise<string> {
