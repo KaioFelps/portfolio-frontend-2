@@ -4,7 +4,6 @@ export abstract class MetaUtilities {
   public static async getCanonicalUrl(path: string): Promise<string> {
     "use server";
     const canonicalUrl = `${ServerEnv.appUrl}${path}`;
-    console.debug(canonicalUrl);
     return canonicalUrl;
   }
 
