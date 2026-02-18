@@ -1,6 +1,11 @@
 "use client";
 
-import { type PropsWithChildren, useEffect, useState } from "react";
+import {
+  type PropsWithChildren,
+  useEffect,
+  useEffectEvent,
+  useState,
+} from "react";
 import {
   PREFERRED_THEME_COOKIE_KEY,
   THEME_COOKIE_KEY,
@@ -24,19 +29,42 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const [actualTheme, setActualTheme] =
     useState<ThemeOptionWithoutSystem | null>(null);
 
+  function exposeTheme(theme: ThemeOptionWithoutSystem | null) {
+    if (!theme) return;
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  const updateTheme = useEffectEvent(
+    (theme: ThemeOption | null, systemPreferedTheme: ThemeOption) => {
+      const resolvedTheme = resolveThemeIntoLightOrDark(
+        theme ?? undefined,
+        systemPreferedTheme,
+      );
+
+      setActualTheme(resolvedTheme);
+      exposeTheme(resolvedTheme);
+    },
+  );
+
   useEffect(() => {
     const theme = getThemeCookie(THEME_COOKIE_KEY, document.cookie);
-    setTheme(theme);
-
-    const cb = (e: MediaQueryListEvent) => {
-      const newPreferredTheme: ThemeOption = e.matches ? "dark" : "light";
-      saveThemeCookieClientSide(PREFERRED_THEME_COOKIE_KEY, newPreferredTheme);
-      setActualTheme(resolveThemeIntoLightOrDark(theme, newPreferredTheme));
-    };
-
     const prefersColorScheme = window.matchMedia(
       "(prefers-color-scheme: dark)",
     );
+
+    const cb = (e: MediaQueryListEvent | MediaQueryList) => {
+      const newPreferredTheme: ThemeOption = e.matches ? "dark" : "light";
+      saveThemeCookieClientSide(PREFERRED_THEME_COOKIE_KEY, newPreferredTheme);
+      updateTheme(theme, newPreferredTheme);
+    };
+
+    setTheme(theme);
+    cb(prefersColorScheme);
 
     saveThemeCookieClientSide(
       PREFERRED_THEME_COOKIE_KEY,
@@ -49,16 +77,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       prefersColorScheme.removeEventListener("change", cb);
     };
   }, []);
-
-  useEffect(() => {
-    if (!actualTheme) return;
-
-    if (actualTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [actualTheme]);
 
   return (
     <ThemeContext.Provider
@@ -80,12 +98,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
             document.cookie,
           );
 
-          const actualTheme = resolveThemeIntoLightOrDark(
-            newTheme,
-            preferredTheme,
-          );
-
-          setActualTheme(actualTheme);
+          updateTheme(newTheme, preferredTheme);
         },
       }}
     >
