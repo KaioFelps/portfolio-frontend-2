@@ -52,7 +52,10 @@ export function Content({ post }: Props) {
     <Wrapper>
       <header>
         <SectionHeader.Root>
-          <SectionHeader.Heading heading="h1">
+          <SectionHeader.Heading
+            heading="h1"
+            className="text-center text-balance"
+          >
             {post.title}
           </SectionHeader.Heading>
         </SectionHeader.Root>
