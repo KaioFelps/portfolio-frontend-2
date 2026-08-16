@@ -1,0 +1,70 @@
+import clsx from "clsx";
+import type { PropsWithChildren } from "react";
+import type { PropsWithClassName } from "@/core/types/props";
+
+type TextProps = { charsCount?: number };
+
+function TextLine({
+  charsCount = 10,
+  className,
+}: PropsWithClassName<TextProps>) {
+  return (
+    <div
+      className={clsx(
+        "font-medium text-base w-fit leading-4 rounded-full bg-gray-300 dark:bg-d-gray-300",
+        "animate-pulse select-none break-all wrap-break-word max-w-full",
+        className,
+      )}
+    >
+      {"\u00a0".repeat(charsCount)}
+    </div>
+  );
+}
+
+function Heading({ charsCount, className }: PropsWithClassName<TextProps>) {
+  return (
+    <TextLine
+      charsCount={charsCount}
+      className={clsx("text-2xl font-bold leading-loose", className)}
+    />
+  );
+}
+
+function Chip({ charsCount = 14 }: TextProps) {
+  return (
+    <div className="chip c-yellow select-none w-fit break-all wrap-break-word">
+      {"\u00a0".repeat(charsCount)}
+    </div>
+  );
+}
+
+function Card({ children, className }: PropsWithChildren<PropsWithClassName>) {
+  return (
+    <div
+      aria-busy="true"
+      className={clsx(
+        "bg-gray-100 dark:bg-d-gray-100 border border-gray-300 dark:border-none",
+        "p-4 rounded-2xl flex-1 flex flex-col gap-3 animate-pulse select-none",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Topstory({ className }: PropsWithClassName) {
+  return (
+    <div
+      className={clsx("rounded-lg bg-yellow-500/20 animate-pulse", className)}
+    />
+  );
+}
+
+export default {
+  TextLine,
+  Heading,
+  Chip,
+  Card,
+  Topstory,
+};
