@@ -6,11 +6,10 @@ import SectionHeader from "@/component/section-header";
 import { ServerResponseBoundary } from "@/component/server-response-boundary";
 import { MetaUtilities } from "@/utils/meta";
 import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
-import { ProjectCardSkeleton } from "../projetos/card/skeleton";
-import { ProjectsContainer } from "../projetos/projects-container";
 import { type FetchBlogPostsQuery, fetchBlogPosts } from "./actions";
 import { Content } from "./content";
 import { BlogPostsFilterForm } from "./filter-form";
+import { BlogSectionsSkeleton } from "./skeleton";
 import { resolveQueryParameters } from "./utils";
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ type Props = {
   searchParams: Promise<Record<string, string | undefined>>;
 };
 
-export default async function ProjectsPage({ searchParams }: Props) {
+export default async function BlogPostsPage({ searchParams }: Props) {
   const { q, qb } = await searchParams;
   const query = resolveQueryParameters({ query: q, queryBy: qb });
 
@@ -38,18 +37,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
         <BlogPostsFilterForm />
       </SectionHeader.Root>
 
-      <Suspense
-        fallback={
-          <ProjectsContainer>
-            <ProjectCardSkeleton />
-            <ProjectCardSkeleton />
-            <ProjectCardSkeleton />
-            <ProjectCardSkeleton />
-            <ProjectCardSkeleton />
-            <ProjectCardSkeleton />
-          </ProjectsContainer>
-        }
-      >
+      <Suspense fallback={<BlogSectionsSkeleton />}>
         <InitialBlogPostsListWrapper query={query} />
       </Suspense>
     </Main>
