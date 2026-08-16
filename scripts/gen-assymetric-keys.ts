@@ -66,12 +66,7 @@ function saveEnvironmentVariables(path: string, environmentVariables: string) {
 }
 
 function encodeKeyToBase64(key: string): string {
-  return Buffer.from(
-    key
-      .replace(/-----(BEGIN|END) (RSA )?(PRIVATE|PUBLIC) KEY-----/g, "")
-      .replace(/\r?\n|\r/g, "")
-      .trim(),
-  ).toString("base64");
+  return Buffer.from(key).toString("base64");
 }
 
 function getEnvFile(file: string): string {

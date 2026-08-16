@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegments } from "next/navigation";
-import { type PropsWithChildren, useCallback } from "react";
+import type { PropsWithChildren } from "react";
 
 type NavItemProps = PropsWithChildren<{
   href: string;
@@ -15,8 +15,7 @@ export function NavItem({ href, children }: NavItemProps) {
 
   const isActive =
     currentPath === href ||
-    (currentSegments.length &&
-      href.startsWith(`/${currentSegments.join("/")}`));
+    (currentSegments.length && href.startsWith(`/${currentSegments[0]}`));
 
   return (
     <Link
