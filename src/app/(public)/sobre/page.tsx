@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
 import { SocialMedias } from "@/config/social-media";
@@ -33,13 +34,13 @@ export default function AboutMePage() {
 
         <p>
           Apesar de não ter experiência profissional, já fiz alguns{" "}
-          <a href="/projetos" className="link">
+          <Link href="/projetos" className="link">
             projetos
-          </a>
+          </Link>
           ! Você pode conferir tudo e mais um pouco no meu{" "}
-          <a href={SocialMedias.github} target="_blank" rel="noreferrer">
+          <Link href={SocialMedias.github} target="_blank" rel="noreferrer">
             github
-          </a>
+          </Link>
           .
         </p>
       </div>

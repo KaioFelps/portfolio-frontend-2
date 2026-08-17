@@ -14,7 +14,7 @@ import { formatDateTime } from "@/core/utils";
 function Wrapper({ children }: PropsWithChildren) {
   return (
     <Main>
-      <a
+      <Link
         href="/blog"
         className={clsx(
           "cursor-default mb-4 w-fit self-start flex items-center gap-3 px-4 py-2 rounded-full border border-gray-300 dark:border-d-gray-300 leading-none text-sm",
@@ -25,7 +25,7 @@ function Wrapper({ children }: PropsWithChildren) {
       >
         <ArrowLeftIcon size="16" weight="bold" />
         Voltar
-      </a>
+      </Link>
 
       {children}
     </Main>
@@ -76,9 +76,9 @@ export function Content({ post }: Props) {
 
           <div className="flex flex-wrap justify-center gap-1">
             {post.tags.map((tag) => (
-              <a
+              <Link
                 key={`blogpost-${post.id}-tags-${tag.id}`}
-                href="/blog?queryBy=tag&query={tag.value}"
+                href={`/blog?queryBy=tag&query=${tag.value}`}
                 className={clsx(
                   "flex",
                   "group cursor-default text-black rounded-full px-2.5 pt-1 pb-0.5 bg-yellow-500 text-sm leading-tight transition-all",
@@ -90,7 +90,7 @@ export function Content({ post }: Props) {
                 <div className="w-[0] group-hover:w-[calc(16px+4px)] transition-all duration-100 ease-in-out overflow-hidden">
                   <ArrowRightIcon size="16" weight="bold" className="ml-1" />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
