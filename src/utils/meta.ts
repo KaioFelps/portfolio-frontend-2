@@ -1,4 +1,4 @@
-import { ServerEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env/server";
 
 export abstract class MetaUtilities {
   public static async getCanonicalUrl(path: string): Promise<string> {

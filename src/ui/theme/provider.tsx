@@ -20,9 +20,7 @@ import {
   saveThemeCookieClientSide,
 } from "./utils";
 
-type ThemeProviderProps = PropsWithChildren<{
-  themeCookieKey: string;
-}>;
+type ThemeProviderProps = PropsWithChildren;
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<ThemeOption | null>(null);

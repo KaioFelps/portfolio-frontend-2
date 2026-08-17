@@ -4,7 +4,7 @@ import clsx from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 import { cookies } from "next/headers";
-import { ServerEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env/server";
 import { ProgressBar } from "@/ui/progress-bar";
 import {
   PREFERRED_THEME_COOKIE_KEY,
