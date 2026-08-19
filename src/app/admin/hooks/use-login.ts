@@ -36,7 +36,7 @@ export function useLogin({ onError, onMutate, onSuccess }: HookArgs = {}) {
     error,
     isSuccess,
   } = useMutation<MutationResponse, MutationErrorResponse, MutationArgs, void>({
-    mutationKey: RQKeys.auth.base,
+    mutationKey: RQKeys.auth.login(),
     mutationFn: authQueries.login,
     onMutate: (args, ctx) => {
       setIsProcessing(true);

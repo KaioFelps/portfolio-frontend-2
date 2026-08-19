@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import FloatingInput from "@/component/floating-input";
-import { useLogin } from "./use-login";
+import { useLogin } from "../hooks/use-login";
 
 const loginSchema = z.object({
   email: z.email({ message: "E-mail inválido." }),
