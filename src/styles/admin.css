@@ -1,3 +1,9 @@
+@layer base {
+  body:has(#admin-styles) {
+    @apply bg-d-backgrond! text-white;
+  }
+}
+
 #admin-styles {
   @layer components {
     .dropdown {
@@ -6,10 +12,6 @@
   }
 
   @layer base {
-    body {
-      @apply !bg-d-backgrond text-white;
-    }
-
     .form-floating {
       @apply relative;
     }

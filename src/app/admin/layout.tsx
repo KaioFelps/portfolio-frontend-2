@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 export default function AdminLayout({ children }: PropsWithChildren) {
   return (
     <ReactQueryProvider>
-      <div id="admin-styles">{children}</div>
+      <div id="admin-styles" className="dark">
+        {children}
+      </div>
     </ReactQueryProvider>
   );
 }
