@@ -3,7 +3,10 @@ import { NextResponse } from "next/server";
 import { AdminRoutes } from "./app/routes";
 
 export function proxy(request: NextRequest) {
-  const hasRefreshToken = request.cookies.has("refresh_token");
+  // using `has` might not work cuz back-end sets empty string, which is true per `has`
+  const refreshToken = request.cookies.get("refresh_token");
+  const hasRefreshToken = Boolean(refreshToken?.value);
+  console.log("tem token de frefresh", hasRefreshToken, refreshToken?.value);
 
   const isAuthPage = request.nextUrl.pathname.startsWith(AdminRoutes.login);
   const isAdminRoute = request.nextUrl.pathname.startsWith(AdminRoutes.home);
