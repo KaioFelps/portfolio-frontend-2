@@ -1,9 +1,17 @@
-import { Main } from "@/component/main";
+import type { Metadata } from "next";
+import { MetaUtilities } from "@/utils/meta";
+import { LogsSection } from "./logs";
+import { StatisticsSection } from "./statistics";
+
+export const metadata: Metadata = {
+  title: await MetaUtilities.getTitle("Home", true),
+};
 
 export default function AdminHomePage() {
   return (
-    <Main>
-      <h1>hello adm</h1>
-    </Main>
+    <>
+      <StatisticsSection />
+      <LogsSection />
+    </>
   );
 }
