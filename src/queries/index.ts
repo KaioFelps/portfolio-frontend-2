@@ -1,6 +1,8 @@
 import { PublicEnv } from "@/config/env/public";
 
 export function generatePathFactory(rootPath: string) {
+  if (rootPath.startsWith("/")) rootPath = rootPath.slice(1);
+
   return (subpath?: string) => {
     let resolvedSubpath = subpath;
     if (subpath?.startsWith("/")) resolvedSubpath = subpath.slice(1);
