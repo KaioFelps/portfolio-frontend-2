@@ -7,6 +7,7 @@ type AuthStore = {
   user: LoginUserPreview | null;
   isLoadingAuth: boolean;
   userIsAdmin: () => boolean;
+  authEventTick: number;
 
   setAuth(token: string, user: LoginUserPreview): void;
   removeAuth(): void;
@@ -19,17 +20,18 @@ export const useAuth = create<AuthStore>(
       token: null,
       user: null,
       isLoadingAuth: true,
+      authEventTick: Date.now(),
 
       setAuth(token: string, user: LoginUserPreview) {
-        set({ token, user });
+        set({ token, user, authEventTick: Date.now() });
       },
 
       removeAuth() {
-        set({ token: null, user: null });
+        set({ token: null, user: null, authEventTick: Date.now() });
       },
 
       sinalizeStoppedLoading() {
-        set({ isLoadingAuth: false });
+        set({ isLoadingAuth: false, authEventTick: Date.now() });
       },
 
       userIsAdmin() {
