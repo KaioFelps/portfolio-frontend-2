@@ -44,12 +44,12 @@ export function useLogin({ onError, onMutate, onSuccess }: HookArgs = {}) {
     },
     onSettled: () => setIsProcessing(false),
     onError: (error, vars, res, ctx) => {
-      toast.danger({ title: error.error });
+      toast.danger({ description: error.error });
       onError?.(error, vars, res, ctx);
     },
     onSuccess: (data, vars, result, ctx) => {
       setAuth(data.accessToken, data.user);
-      toast.add({ title: "Logado com sucesso!" });
+      toast.add({ description: "Logado com sucesso!" });
       router.replace(AdminRoutes.home);
       onSuccess?.(data, vars, result, ctx);
     },

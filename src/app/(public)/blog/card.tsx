@@ -17,7 +17,7 @@ export function ArticleCard({
     e.preventDefault();
     const url = new URL(`/blog/${post.slug}`, window.location.href);
     navigator.clipboard.writeText(url.toString());
-    toast.add({ title: "Link copiado!" });
+    toast.add({ description: "Link copiado!" });
   };
 
   return (

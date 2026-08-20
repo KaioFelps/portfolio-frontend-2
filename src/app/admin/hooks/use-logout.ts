@@ -23,7 +23,7 @@ export function useLogout(_args: HookArgs = {}) {
       setIsProcessing(true);
     },
     onSettled: () => setIsProcessing(false),
-    onError: (error) => toast.danger({ title: error.error }),
+    onError: (error) => toast.danger({ description: error.error }),
     onSuccess: () => {
       removeAuth();
       router.replace(AdminRoutes.login);

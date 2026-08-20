@@ -38,7 +38,7 @@ export function Content({ initialData, postsQuery: query }: Props) {
     const newPosts = await fetchBlogPosts({ query, page: nextPage });
 
     if (!newPosts.success) {
-      toast.danger({ title: "Ups! Algo deu errado..." });
+      toast.danger({ description: "Ups! Algo deu errado..." });
       return;
     }
 
