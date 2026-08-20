@@ -4,12 +4,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(
-    .dark,
-    .dark *,
-    body:has(#admin-styles),
-    body:has(#admin-styles) *
-  ));
+@custom-variant dark (
+  &:where(.dark, .dark *, body:has(#admin-styles), body:has(#admin-styles) *)
+);
 
 /***********************************************************
  ** THEME
@@ -77,8 +74,9 @@
   --animate-sheet-swipe-in-to-right: sheetSwipeInToRight 150ms ease-in;
 }
 
-@custom-variant prose-inline-code (&
-  :is(:where(:not(pre) > code):not(:where([class~="not-prose"] *))));
+@custom-variant prose-inline-code (
+  & :is(:where(:not(pre) > code):not(:where([class~="not-prose"] *)))
+);
 
 /***********************************************************
  ** KEYFRAMES

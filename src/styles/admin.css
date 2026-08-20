@@ -1,17 +1,27 @@
-@layer base {
-  body:has(#admin-styles) {
-    @apply bg-d-backgrond! text-white;
-  }
-}
-
-#admin-styles {
+:root:has(#admin-styles) {
   @layer components {
     .dropdown {
       @apply rounded-xl border border-d-gray-200 bg-d-backgrond p-1 shadow-sm outline-none z-10;
     }
+
+    .btn.ghost {
+      @apply font-normal text-white border-d-gray-200 bg-d-gray-100 rounded-lg px-4 py-3;
+    }
+
+    .btn.danger {
+      @apply font-normal text-white rounded-lg px-4 py-3;
+    }
+
+    .btn.default {
+      @apply font-normal rounded-lg px-4 py-3;
+    }
   }
 
   @layer base {
+    body {
+      @apply bg-d-backgrond! text-white;
+    }
+
     .form-floating {
       @apply relative;
     }
@@ -58,18 +68,6 @@
     h1,
     h2 {
       @apply !font-bold !text-3xl;
-    }
-
-    .btn.ghost {
-      @apply font-normal text-white border-d-gray-200 bg-d-gray-100 rounded-lg px-4 py-3;
-    }
-
-    .btn.danger {
-      @apply font-normal text-white rounded-lg px-4 py-3;
-    }
-
-    .btn.default {
-      @apply font-normal rounded-lg px-4 py-3;
     }
   }
 }
