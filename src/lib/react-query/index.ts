@@ -16,6 +16,11 @@ export const RQKeys = {
     base: ["logs"] as const,
     fetchAll: () => [...RQKeys.logs.base, "fetch-all"] as const,
   },
+  projects: {
+    base: ["projects"] as const,
+    fetchPaginated: (filters?: object) =>
+      [...RQKeys.projects.base, "fetch-paginated", filters] as const,
+  },
 } as const;
 
 Object.freeze(RQKeys);
