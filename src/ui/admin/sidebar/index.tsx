@@ -6,6 +6,7 @@ import { HouseIcon } from "@phosphor-icons/react/dist/ssr/House";
 import { TagIcon } from "@phosphor-icons/react/dist/ssr/Tag";
 import { UserIcon } from "@phosphor-icons/react/dist/ssr/User";
 import Link from "next/link";
+import { AdminRoutes } from "@/app/routes";
 import logo from "@/assets/logo-dark-mode.svg";
 import { LogoutSidebarItem } from "./logout-item";
 import { Section } from "./section";
@@ -13,7 +14,7 @@ import { Section } from "./section";
 export function AdminSidebar() {
   return (
     <aside
-      className="from-d-backgrond absolute inset-y-0 left-0 w-[304px] border-r border-white/5 backdrop-blur-3xl"
+      className="from-d-backgrond absolute inset-y-0 left-0 w-76 border-r border-white/5 backdrop-blur-3xl"
       style={{
         background: `linear-gradient(rgba(16, 15, 19, 0.75), rgba(16, 15, 19, 0.75)),
           linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -24,7 +25,7 @@ export function AdminSidebar() {
       <header>
         <h1 className="px-6 py-4 border-b border-b-white/10">
           <span className="sr-only">Kaio Felipe Website Housekeeping</span>
-          <img src={logo.src} alt="Kaio Felps" className="w-[170px]" />
+          <img src={logo.src} alt="Kaio Felps" className="w-42.5" />
         </h1>
       </header>
       <nav>
@@ -42,7 +43,7 @@ export function AdminSidebar() {
           icon={BriefcaseIcon}
           items={[
             {
-              href: "/admin/projetos",
+              href: AdminRoutes.projects.manage,
               label: "Lista de projetos",
             },
             {
