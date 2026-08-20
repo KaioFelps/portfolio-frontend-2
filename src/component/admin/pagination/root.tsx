@@ -1,5 +1,14 @@
+import clsx from "clsx";
 import type { PropsWithChildren } from "react";
+import type { PropsWithClassName } from "@/core/types/props";
 
-export function PaginationRoot({ children }: PropsWithChildren) {
-  return <div className="flex justify-center gap-2.5">{children}</div>;
+export function PaginationRoot({
+  children,
+  className,
+}: PropsWithChildren<PropsWithClassName>) {
+  return (
+    <div className={clsx("flex justify-center gap-2.5", className)}>
+      {children}
+    </div>
+  );
 }
