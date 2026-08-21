@@ -78,6 +78,8 @@ export class PaginationHelper {
       calculatedPages.push(page);
     }
 
+    if (!calculatedPages.length) calculatedPages.push(1);
+
     return calculatedPages;
   }
 }
