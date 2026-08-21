@@ -45,14 +45,19 @@ export function useDeleteProject({
       toast.danger({ description: error.error });
       onError?.(error, vars, result, ctx);
     },
-    onSuccess: (data, vars, result, ctx) => {
+    onSuccess: async (data, vars, result, ctx) => {
       toast.add({ description: "Projeto deletado com sucesso." });
 
-      queryClient.invalidateQueries({
-        queryKey: RQKeys.projects.fetchPaginated(),
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: RQKeys.projects.fetchPaginated(),
+        }),
+        queryClient.invalidateQueries({
+          queryKey: RQKeys.logs.fetchAll(),
+        }),
+      ]);
 
-      onSuccess?.(data, vars, result, ctx);
+      await onSuccess?.(data, vars, result, ctx);
     },
   });
 
