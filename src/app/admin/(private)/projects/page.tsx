@@ -15,7 +15,7 @@ export default function AdminProjectsPage() {
         <h1>Projetos</h1>
         <CreateNewProjectAnchor />
       </header>
-
+      {/* TODO: add filter */}
       <ProjectsSection />
       <ProjectsPagination />
     </>
