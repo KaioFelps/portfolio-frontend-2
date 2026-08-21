@@ -3,6 +3,8 @@ export const AdminRoutes = {
   login: "/admin/login" as const,
   projects: {
     manage: "/admin/projects" as const,
+    edit: (projectId: string) => `/admin/projects/edit/${projectId}`,
+    new: `/admin/projects/new`,
   },
 };
 
