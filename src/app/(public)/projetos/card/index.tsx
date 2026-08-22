@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Link from "next/link";
 import type { Project } from "@/core/types/presented-entities/project";
 import { LinksPopover } from "./links-popover";
 
@@ -14,7 +15,7 @@ export function ProjectCard(project: Project) {
     >
       <img
         src={project.topstory}
-        className="h-[180px] rounded-lg object-cover object-center"
+        className="h-45 rounded-lg object-cover object-center"
         alt=""
       />
 
@@ -26,13 +27,13 @@ export function ProjectCard(project: Project) {
       <footer className="flex items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
-            <a
+            <Link
               key={`${project.id}_tag_${tag.id}`}
               href={`/projetos?q=${tag.value}&qb=tag`}
               className="group chip c-yellow c-clickable"
             >
               {tag.value}
-            </a>
+            </Link>
           ))}
         </div>
 
