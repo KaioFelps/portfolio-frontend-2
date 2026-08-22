@@ -18,19 +18,22 @@ export type FetchProjectsErrorResponse = ErrorResponse<string[]>;
 export type FetchProjectsParams = {
   tagId?: string;
   containingTitle?: string;
+  page?: number;
 };
 
 export async function fetchProjects({
   containingTitle,
   tagId,
+  page,
 }: FetchProjectsParams = {}): Promise<FetchProjectsResponse> {
   try {
     const params: Record<string, unknown> = {};
     if (tagId) params.tag = tagId;
     if (containingTitle) params.title = containingTitle;
+    if (page) params.page = page;
 
     const response = await axios.get<FetchProjectsResponse>(mountPath("list"), {
-      data: params,
+      params,
     });
 
     const data = response.data;

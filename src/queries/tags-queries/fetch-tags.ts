@@ -27,7 +27,7 @@ export async function fetchTags({
 }: FetchTagsParams = {}): Promise<FetchTagsResponse> {
   try {
     const response = await axios<FetchTagsResponse>(mountPath("list"), {
-      data: { page, query, amount: perPage },
+      params: { page, query, amount: perPage },
     });
     return response.data;
   } catch (e) {
