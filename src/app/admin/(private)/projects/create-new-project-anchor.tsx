@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AdminRoutes } from "@/app/routes";
 import { useAuth } from "@/lib/zustand-stores/auth";
 
 export function CreateNewProjectAnchor() {
@@ -9,7 +10,7 @@ export function CreateNewProjectAnchor() {
   if (!isAdmin) return null;
 
   return (
-    <Link href="/admin/projetos/novo" className="btn default">
+    <Link href={AdminRoutes.projects.new} className="btn default">
       Adicionar projeto
     </Link>
   );

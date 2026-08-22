@@ -47,7 +47,7 @@ export function AdminSidebar() {
               label: "Lista de projetos",
             },
             {
-              href: "/admin/projetos/novo",
+              href: AdminRoutes.projects.new,
               label: "Novo projeto",
             },
           ]}

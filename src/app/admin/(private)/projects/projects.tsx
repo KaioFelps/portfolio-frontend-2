@@ -29,9 +29,9 @@ export function ProjectsSection() {
           <AlertBlock type="warning">
             <p>
               Você não tem nenhum projeto. Experimente{" "}
-              <a className="font-bold" href="/admin/projetos/novo">
+              <Link className="font-bold" href={AdminRoutes.projects.new}>
                 criar um
-              </a>
+              </Link>
               !
             </p>
           </AlertBlock>
