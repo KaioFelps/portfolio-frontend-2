@@ -20,7 +20,7 @@ export function ProjectsPagination() {
     const lastPage = Math.ceil(totalCount / perPage);
 
     setLastPage(lastPage);
-    setPaginationButtons(PaginationHelper.calculatePages(5, page, lastPage));
+    setPaginationButtons(PaginationHelper.calculatePages(page, lastPage, 5));
   }, [data]);
 
   switch (status) {
