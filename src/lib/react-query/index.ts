@@ -18,8 +18,17 @@ export const RQKeys = {
   },
   projects: {
     base: ["projects"] as const,
-    fetchPaginated: (filters?: object) =>
-      [...RQKeys.projects.base, "fetch-paginated", filters] as const,
+    fetchPaginatedBase: () =>
+      [...RQKeys.projects.base, "fetch-paginated"] as const,
+    fetchPaginated: (filters: object | undefined) =>
+      [...RQKeys.projects.fetchPaginatedBase(), filters] as const,
+  },
+  tags: {
+    base: ["tags"] as const,
+    fetchPaginatedBase: () =>
+      [...RQKeys.projects.base, "fetch-paginated"] as const,
+    fetchPaginated: (filters: object | undefined) =>
+      [...RQKeys.projects.fetchPaginatedBase(), filters] as const,
   },
 } as const;
 

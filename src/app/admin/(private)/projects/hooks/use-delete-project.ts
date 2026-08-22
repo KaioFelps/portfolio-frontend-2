@@ -50,7 +50,7 @@ export function useDeleteProject({
 
       await Promise.all([
         queryClient.invalidateQueries({
-          queryKey: RQKeys.projects.fetchPaginated(),
+          queryKey: RQKeys.projects.fetchPaginatedBase(),
         }),
         queryClient.invalidateQueries({
           queryKey: RQKeys.logs.fetchAll(),
