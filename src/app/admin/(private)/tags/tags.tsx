@@ -2,6 +2,7 @@
 
 import { AlertBlock } from "@/component/alert-block";
 import Skeleton from "@/component/skeleton";
+import { DeleteTagButton } from "./delete-tag-button";
 import { EditTagDialog } from "./edit-tag-dialog";
 import { useFetchTags } from "./hooks/use-fetch-tags";
 
@@ -29,7 +30,10 @@ export function TagsSection() {
                 className="flex justify-between gap-3 items-center p-4 rounded-2xl bg-white/5"
               >
                 <span className="font-medium">{tag.value}</span>
-                <EditTagDialog tag={tag} />
+                <div className="flex items-center gap-3">
+                  <DeleteTagButton tag={tag} />
+                  <EditTagDialog tag={tag} />
+                </div>
               </div>
             ))}
           </div>
