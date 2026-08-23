@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AdminRoutes } from "@/app/routes";
 import { MetaUtilities } from "@/utils/meta";
 import { BlogPosts } from "./posts";
+import { BlogPostsPagination } from "./posts-pagintion";
 
 export const metadata: Metadata = {
   title: await MetaUtilities.getTitle("Novo Post", true),
@@ -19,6 +20,7 @@ export default function AdminHomePage() {
       </header>
 
       <BlogPosts />
+      <BlogPostsPagination />
     </>
   );
 }
