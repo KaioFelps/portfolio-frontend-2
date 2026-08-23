@@ -58,22 +58,18 @@ export function ProjectsPagination() {
   }
 }
 
-const Item = () => (
-  <div className="square rounded-lg size-11.5 bg-white/5 border border-white/10 animate-pulse" />
-);
-
 function ProjectsPaginationSkeleton() {
   return (
     <Pagination.Root className="animate-bounce opacity-60">
-      <Item />
+      <Pagination.ButtonSkeleton />
       <Pagination.ItemsBoundary>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        <Pagination.ButtonSkeleton />
+        <Pagination.ButtonSkeleton />
+        <Pagination.ButtonSkeleton />
+        <Pagination.ButtonSkeleton />
+        <Pagination.ButtonSkeleton />
       </Pagination.ItemsBoundary>
-      <Item />
+      <Pagination.ButtonSkeleton />
     </Pagination.Root>
   );
 }
