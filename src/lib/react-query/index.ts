@@ -22,6 +22,8 @@ export const RQKeys = {
       [...RQKeys.projects.base, "fetch-paginated"] as const,
     fetchPaginated: (filters: object | undefined) =>
       [...RQKeys.projects.fetchPaginatedBase(), filters] as const,
+    findById: (projectId: string) =>
+      [...RQKeys.projects.base, "find-by-id", projectId] as const,
   },
   tags: {
     base: ["tags"] as const,
