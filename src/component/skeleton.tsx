@@ -72,10 +72,23 @@ function Topstory({ className }: PropsWithClassName) {
   );
 }
 
+function ListRow({ className }: PropsWithClassName) {
+  return (
+    <div className="flex justify-between gap-3 items-center p-4 rounded-2xl bg-white/5 animate-pulse">
+      <TextLine charsCount={1} className={className} noLeading />
+      <div className="flex items-center gap-3">
+        <div className="aspect-square size-5 rounded-md bg-red-300/20" />
+        <div className="aspect-square size-5 rounded-md bg-white/10" />
+      </div>
+    </div>
+  );
+}
+
 export default {
   TextLine,
   Heading,
   Chip,
   Card,
   Topstory,
+  ListRow,
 };
