@@ -58,11 +58,11 @@ export function AdminSidebar() {
           icon={BookIcon}
           items={[
             {
-              href: "/admin/blog",
+              href: AdminRoutes.posts.manage,
               label: "Lista de posts",
             },
             {
-              href: "/admin/blog/novo",
+              href: AdminRoutes.posts.new,
               label: "Novo post",
             },
           ]}
