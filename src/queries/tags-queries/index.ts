@@ -1,7 +1,8 @@
 import { generatePathFactory } from "..";
 import { createTag } from "./create-tag";
+import { editTag } from "./edit-tag";
 import { fetchTags } from "./fetch-tags";
 
 export const mountPath = generatePathFactory("tag");
 
-export default { fetchTags, createTag };
+export default { fetchTags, createTag, editTag };
