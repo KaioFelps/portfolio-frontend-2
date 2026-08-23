@@ -24,7 +24,7 @@ export function TagsSection() {
           <div className="flex flex-col gap-1 mb-12">
             {tags.map((tag) => (
               <div
-                key={`admin-page-tags-${tag}`}
+                key={`admin-page-tags-${tag.id}`}
                 className="flex justify-between gap-3 items-center p-4 rounded-2xl bg-white/5"
               >
                 <span className="font-medium">{tag.value}</span>
@@ -37,12 +37,14 @@ export function TagsSection() {
 
       return (
         <AlertBlock type="warning" full>
-          Não há nenhuma tag registrada. Experimente
-          <a className="font-bold" href="/admin/tags/novo">
-            {" "}
-            criar uma{" "}
-          </a>
-          !
+          <p>
+            Não há nenhuma tag registrada. Experimente
+            <a className="font-bold" href="/admin/tags/novo">
+              {" "}
+              criar uma{" "}
+            </a>
+            !
+          </p>
         </AlertBlock>
       );
     }
