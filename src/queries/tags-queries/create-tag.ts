@@ -35,6 +35,10 @@ export async function createTag({
           validationMessages: message,
         });
       }
+      case 401: {
+        const { message } = error.response!.data as { message: string };
+        throw MakeServerResponse.error(message);
+      }
       default:
         console.error(
           `Falha ao criar uma nova tag no painel:`,
