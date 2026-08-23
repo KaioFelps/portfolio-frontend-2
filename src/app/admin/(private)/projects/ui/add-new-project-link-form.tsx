@@ -44,7 +44,7 @@ export function AddNewProjectLinkForm({
       onSubmit={handleSubmit(handleAddNewLink)}
       ref={ref}
     >
-      <h3 className="text-xl font-bold mb-6">Links referente ao projeto</h3>
+      <h3 className="text-xl font-bold mb-6">Links referentes ao projeto</h3>
 
       <FloatingInput.Error error={formState.errors.title?.message} />
       <FloatingInput.Group className="mb-3">

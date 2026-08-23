@@ -90,6 +90,7 @@ export function FloatingInputSelect({
           align="start"
           side="bottom"
           alignItemWithTrigger={false}
+          collisionAvoidance={{ align: "shift", side: "shift" }}
         >
           <Select.Popup
             className={clsx(
@@ -98,6 +99,7 @@ export function FloatingInputSelect({
               "transition-all duration-200 ease-out origin-top",
               "data-starting-style:scale-95 data-starting-style:opacity-0 data-starting-style:-translate-y-2",
               "data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:-translate-y-2",
+              "max-h-75 overflow-y-auto overscroll-contain",
             )}
           >
             {options.map((option) => (

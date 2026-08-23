@@ -27,10 +27,9 @@ export const RQKeys = {
   },
   tags: {
     base: ["tags"] as const,
-    fetchPaginatedBase: () =>
-      [...RQKeys.projects.base, "fetch-paginated"] as const,
+    fetchPaginatedBase: () => [...RQKeys.tags.base, "fetch-paginated"] as const,
     fetchPaginated: (filters: object | undefined) =>
-      [...RQKeys.projects.fetchPaginatedBase(), filters] as const,
+      [...RQKeys.tags.fetchPaginatedBase(), filters] as const,
   },
 } as const;
 

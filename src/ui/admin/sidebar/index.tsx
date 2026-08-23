@@ -89,11 +89,11 @@ export function AdminSidebar() {
           icon={TagIcon}
           items={[
             {
-              href: "/admin/tags",
+              href: AdminRoutes.tags.manage,
               label: "Tags existentes",
             },
             {
-              href: "/admin/tags/novo",
+              href: AdminRoutes.tags.new,
               label: "Criar tag",
             },
           ]}

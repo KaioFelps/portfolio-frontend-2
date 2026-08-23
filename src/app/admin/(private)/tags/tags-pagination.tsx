@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { AdminRoutes } from "@/app/routes";
 import Pagination from "@/component/admin/pagination";
 import { PaginationHelper } from "@/core/pagination";
-import { useFetchProjects } from "./hooks/use-fetch-projects";
+import { useFetchTags } from "./hooks/use-fetch-tags";
 
-export function ProjectsPagination() {
-  const { data, status } = useFetchProjects();
+export function TagsPagination() {
+  const { data, status } = useFetchTags();
   const [paginationButtons, setPaginationButtons] = useState<number[]>([]);
   const [lastPage, setLastPage] = useState(1);
   const params = useSearchParams();
@@ -33,7 +33,7 @@ export function ProjectsPagination() {
     case "success": {
       const getHref = (page: number) => {
         const url = `?${params.toString()}`;
-        return `${AdminRoutes.projects.manage}/${PaginationHelper.getQueryStringFromUrl(url.toString(), { page })}`;
+        return `${AdminRoutes.tags.manage}/${PaginationHelper.getQueryStringFromUrl(url.toString(), { page })}`;
       };
 
       return (

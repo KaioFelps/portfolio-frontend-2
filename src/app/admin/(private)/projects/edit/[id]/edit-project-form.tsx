@@ -37,10 +37,10 @@ export function EditProjectForm({ projectId }: Props) {
   const { formState, register, handleSubmit, control, reset, watch } = useForm({
     resolver: zodResolver(editProjectSchema),
     values: {
-      links: projectData?.project?.links,
-      tagsIds: projectData?.project?.tags.map((tag) => tag.id),
-      title: projectData?.project?.title,
-      topstory: projectData?.project?.topstory,
+      links: projectData?.project?.links ?? [],
+      tagsIds: projectData?.project?.tags.map((tag) => tag.id) ?? [],
+      title: projectData?.project?.title ?? "",
+      topstory: projectData?.project?.topstory ?? "",
     },
   });
 
