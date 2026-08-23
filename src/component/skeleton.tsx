@@ -2,17 +2,19 @@ import clsx from "clsx";
 import type { PropsWithChildren } from "react";
 import type { PropsWithClassName } from "@/core/types/props";
 
-type TextProps = { charsCount?: number };
+type TextProps = { charsCount?: number; noLeading?: boolean };
 
 function TextLine({
   charsCount = 10,
   className,
+  noLeading = false,
 }: PropsWithClassName<TextProps>) {
   return (
     <div
       className={clsx(
-        "font-medium text-base w-fit leading-4 rounded-full bg-gray-300 dark:bg-d-gray-300",
+        "font-medium text-base w-fit rounded-full bg-gray-300 dark:bg-d-gray-300",
         "animate-pulse select-none break-all wrap-break-word max-w-full",
+        !noLeading && "leading-4",
         className,
       )}
     >
@@ -21,11 +23,20 @@ function TextLine({
   );
 }
 
-function Heading({ charsCount, className }: PropsWithClassName<TextProps>) {
+function Heading({
+  charsCount,
+  className,
+  noLeading = false,
+}: PropsWithClassName<TextProps>) {
   return (
     <TextLine
       charsCount={charsCount}
-      className={clsx("text-2xl font-bold leading-loose", className)}
+      noLeading
+      className={clsx(
+        "text-2xl font-bold",
+        !noLeading && "leading-loose",
+        className,
+      )}
     />
   );
 }

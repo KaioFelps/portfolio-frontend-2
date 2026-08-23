@@ -1,8 +1,4 @@
-class NonExistingEnvVariableError extends Error {
-  public constructor(variable: string) {
-    super(`A variável de ambiente ${variable} precisa ser configurada.`);
-  }
-}
+import { NonExistingEnvVariableError } from ".";
 
 export const ServerEnv = Object.freeze({
   appName: process.env.APP_NAME!,

@@ -8,6 +8,7 @@ import type { PropsWithChildren } from "react";
 import { AlertBlock } from "@/component/alert-block";
 import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
+import { useKatex } from "@/core/hooks/use-katex";
 import { useStarryNight } from "@/core/hooks/use-starry-night";
 import type { ExpandedBlogPost } from "@/core/types/presented-entities/expanded-blog-post";
 import { formatDateTime } from "@/core/utils";
@@ -39,6 +40,7 @@ type Props = {
 
 export function Content({ post }: Props) {
   useStarryNight();
+  const { ref } = useKatex({ content: post?.content });
 
   if (!post)
     return (
@@ -95,6 +97,7 @@ export function Content({ post }: Props) {
 
       <div
         id="article-body"
+        ref={ref}
         className={clsx(
           "text-container max-w-198 gap-4 mx-auto text-lg dark:text-d-gray-800",
           "[&_:is(p,div,hr,table)]:mb-4 prose-table:max-w-full prose-table:overflow-x-scroll",

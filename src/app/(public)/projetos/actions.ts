@@ -1,7 +1,7 @@
 "use server";
 
 import { constants } from "node:http2";
-import { ServerEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env/server";
 import { ErrorMessages } from "@/core/error-messages";
 import type { PaginatedResponse } from "@/core/types/paginated-response";
 import type { Project } from "@/core/types/presented-entities/project";

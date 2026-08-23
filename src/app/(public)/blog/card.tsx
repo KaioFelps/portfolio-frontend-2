@@ -2,6 +2,7 @@
 
 import { LinkSimpleIcon } from "@phosphor-icons/react/dist/ssr/LinkSimple";
 import clsx from "clsx";
+import Link from "next/link";
 import type { MouseEventHandler } from "react";
 import type { BlogPost } from "@/core/types/presented-entities/blog-post";
 import toast from "@/lib/toast";
@@ -17,11 +18,11 @@ export function ArticleCard({
     e.preventDefault();
     const url = new URL(`/blog/${post.slug}`, window.location.href);
     navigator.clipboard.writeText(url.toString());
-    toast.add({ title: "Link copiado!" });
+    toast.add({ description: "Link copiado!" });
   };
 
   return (
-    <a
+    <Link
       href={`/blog/${post.slug}`}
       className={clsx(
         "group/parent transition-all",
@@ -32,7 +33,7 @@ export function ArticleCard({
     >
       <img
         src={post.topstory}
-        className="min-w-[264px] h-32 object-cover rounded-lg max-md:hidden"
+        className="min-w-66 h-32 object-cover rounded-lg max-md:hidden"
         alt=""
       />
 
@@ -64,7 +65,7 @@ export function ArticleCard({
         </p>
 
         <div className="flex gap-2 flex-wrap">
-          <span className="text-gray-600 dark:text-d-gray-600 px-2 py-[6px] rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 leading-none text-sm">
+          <span className="text-gray-600 dark:text-d-gray-600 px-2 py-1.5 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 leading-none text-sm">
             {new Date(post.publishedAt!).toLocaleString("pt-Br", {
               day: "numeric",
               month: "long",
@@ -80,13 +81,13 @@ export function ArticleCard({
                 event.preventDefault();
                 navigate(`/blog?q=${tag.value}&qb=tag`);
               }}
-              className="px-2 py-[6px] rounded-full bg-yellow-500/10 border border-yellow-500 leading-none text-sm text-yellow-700"
+              className="px-2 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500 leading-none text-sm text-yellow-700"
             >
               {tag.value}
             </button>
           ))}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

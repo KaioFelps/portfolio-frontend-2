@@ -15,7 +15,7 @@ export function LinksPopover({ links, projectId }: Props) {
         title="Links relacionados"
         className={clsx(
           "text-gray-800 p-1 rounded-md bg-gray-200 dark:text-d-gray-800 dark:bg-d-gray-200",
-          "transition-all will-change-[filter,_background-color]",
+          "transition-all will-change-[filter,background-color]",
           "hover:brightness-95 active:brightness-90",
           "dark:hover:bg-white/10 dark:active:bg-white/15",
         )}
@@ -29,12 +29,13 @@ export function LinksPopover({ links, projectId }: Props) {
             key={`project-${projectId}-link-${link.title}`}
             className={clsx(
               "cursor-default block p-2 rounded-lg text-center transition-all",
-              "will-change-[background-color,_filter] font-bold text-sm text-blue-500",
+              "will-change-[background-color,filter] font-bold text-sm text-blue-500",
               "dark:bg-d-gray-200 dark:hover:bg-white/5 dark:active:bg-white/10",
               "dark:active:brightness-100 bg-gray-200 hover:bg-gray-300 active:brightness-90",
             )}
             href={link.value}
             target="_blank"
+            rel="noopener"
           >
             {link.title}
           </a>

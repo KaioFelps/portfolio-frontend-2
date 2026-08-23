@@ -1,6 +1,6 @@
 "use server";
 
-import { ServerEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env/server";
 import { ErrorMessages } from "@/core/error-messages";
 import type { ExpandedBlogPost } from "@/core/types/presented-entities/expanded-blog-post";
 import {

@@ -147,6 +147,10 @@
       max-width: calc(100vw - 48px);
     }
 
+    .katex {
+      font-size: inherit !important;
+    }
+
     @apply dark:text-white/80 [&>*:not(:last-child)]:mb-4 prose-headings:my-6;
 
     @apply prose-pre:text-base prose-pre:p-4 prose-pre:bg-gray-200 dark:prose-pre:bg-black/50 prose-pre:rounded-xl prose-pre:border-gray-200 dark:prose-pre:border-d-gray-200 prose-pre:overflow-x-scroll;

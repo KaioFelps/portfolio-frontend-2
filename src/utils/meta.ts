@@ -1,4 +1,4 @@
-import { ServerEnv } from "@/config/env";
+import { ServerEnv } from "@/config/env/server";
 
 export abstract class MetaUtilities {
   public static async getCanonicalUrl(path: string): Promise<string> {
@@ -7,8 +7,15 @@ export abstract class MetaUtilities {
     return canonicalUrl;
   }
 
-  public static async getTitle(title: string): Promise<string> {
+  public static async getTitle(
+    title: string,
+    adminRoute = false,
+  ): Promise<string> {
     "use server";
-    return `${ServerEnv.appName} :: ${title}`;
+    const formerPart = adminRoute
+      ? `${ServerEnv.appName} :: Admin`
+      : ServerEnv.appName;
+
+    return title ? `${formerPart} :: ${title}` : formerPart;
   }
 }

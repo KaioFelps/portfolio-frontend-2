@@ -32,7 +32,7 @@ export function Content({ initialData, projectsQuery: query }: Props) {
     const newProjects = await fetchProjects({ query, page: nextPage });
 
     if (!newProjects.success) {
-      toast.danger({ title: "Ups! Algo deu errado..." });
+      toast.danger({ description: "Ups! Algo deu errado..." });
       return;
     }
 

@@ -7,8 +7,6 @@ import { StarryNightSingletone } from "@/lib/starry-night";
 export function useStarryNight() {
   useLayoutEffect(() => {
     const codeBlocks = Array.from(document.querySelectorAll("pre code"));
-    StarryNightSingletone.clientSideHighlight(codeBlocks).then(() =>
-      console.log("terminou de transofrmar os codigos"),
-    );
+    StarryNightSingletone.clientSideHighlight(codeBlocks);
   }, []);
 }
