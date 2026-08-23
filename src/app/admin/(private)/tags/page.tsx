@@ -5,7 +5,7 @@ import { TagsSection } from "./tags";
 import { TagsPagination } from "./tags-pagination";
 
 export const metadata: Metadata = {
-  title: await MetaUtilities.getTitle("Projetos", true),
+  title: await MetaUtilities.getTitle("Tags", true),
 };
 
 export default function AdminProjectsPage() {
