@@ -86,11 +86,11 @@ export function AddNewProjectLinkForm({
         Adicionar
       </button>
 
-      {links.length > 0 && (
+      {links?.length > 0 && (
         <div className="flex flex-col gap-0.5">
           {links.map((link) => (
             <div
-              key={`new-project-form-link-${link.value}`}
+              key={`project-form-link-${link.value}`}
               className="flex gap-3 justify-between w-full p-1.5 pl-3 rounded-xl bg-d-gray-300/10 hover:bg-d-gray-300/15"
             >
               <span className="font-medium">

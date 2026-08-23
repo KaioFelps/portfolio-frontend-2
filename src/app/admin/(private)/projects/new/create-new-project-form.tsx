@@ -4,10 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { AdminRoutes } from "@/app/routes";
 import FloatingInput from "@/component/floating-input";
 import { useFetchEveryTag } from "../../hooks/use-fetch-every-tag";
-import { AddNewProjectLinkForm } from "./add-new-project-link-form";
-import { AvailableTagsSelect } from "./available-tags-select";
+import { AddNewProjectLinkForm } from "../ui/add-new-project-link-form";
+import { AvailableTagsSelect } from "../ui/available-tags-select";
 import { useCreateProject } from "./hooks/use-create-project";
 import { createProjectSchema } from "./schema";
 
@@ -134,7 +135,7 @@ export function CreateNewProjectForm() {
         />
 
         <div className="flex gap-2 mt-4">
-          <Link href="/admin/projetos" className="btn ghost">
+          <Link href={AdminRoutes.projects.manage} className="btn ghost">
             Cancelar
           </Link>
 
