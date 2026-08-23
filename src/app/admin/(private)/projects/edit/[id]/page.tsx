@@ -13,7 +13,6 @@ type Props = {
 
 export default async function AdminEditProjectPage({ params }: Props) {
   const { id } = await params;
-  console.log(id);
 
   return (
     <>
