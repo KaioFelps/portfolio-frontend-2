@@ -3,8 +3,24 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   output: "standalone",
+
+  images: {
+    unoptimized: true,
+  },
+
   experimental: {
     webpackMemoryOptimizations: true,
+    optimizePackageImports: [
+      "@phosphor-icons/react",
+      "@base-ui/react",
+      "@radix-ui/react-slot",
+      "@tiptap/react",
+      "@tiptap/core",
+      "@tiptap/starter-kit",
+      "@wooorm/starry-night",
+      "katex",
+      "axios",
+    ],
   },
 };
 
