@@ -99,11 +99,10 @@ export function Content({ post }: Props) {
         id="article-body"
         ref={ref}
         className={clsx(
-          "text-container max-w-198 gap-4 mx-auto text-lg dark:text-d-gray-800",
+          "text-container w-full max-w-198 gap-4 mx-auto text-lg dark:text-d-gray-800",
           "[&_:is(p,div,hr,table)]:mb-4 prose-table:max-w-full prose-table:overflow-x-scroll",
           "prose-img:max-w-full",
         )}
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: it's writen by an admin
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
     </Wrapper>
