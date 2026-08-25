@@ -14,6 +14,4 @@ swap_if_incoming() {
 }
 
 swap_if_incoming .next _next
-
-cp .env .next/standalone/.env
-node .next/server.js
+node server.js
