@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { MetaUtilities } from "@/utils/meta";
 import { CreateNewPostForm } from "./create-new-post-form";
 
@@ -10,7 +11,9 @@ export default function AdminNewProjectPage() {
   return (
     <>
       <h1 className="mb-12">Nova publicação</h1>
-      <CreateNewPostForm />
+      <Suspense fallback={null}>
+        <CreateNewPostForm />
+      </Suspense>
     </>
   );
 }

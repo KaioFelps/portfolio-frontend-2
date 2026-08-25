@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import LogoDark from "@/assets/logo-dark-mode.svg";
 import Logo from "@/assets/logo-white-mode.svg";
 import { ThemeToggle } from "../theme/toggle";
-import { NavItem } from "./nav-item";
+import { NavItem, StaticNavItem } from "./nav-item";
 
 export function Header() {
   return (
@@ -20,15 +21,28 @@ export function Header() {
       </Link>
 
       <nav className=" flex-1 flex flex-row gap-1 self-center justify-center items-center ">
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/sobre">Sobre mim</NavItem>
-        <NavItem href="/blog">Blog</NavItem>
-        <NavItem href="/projetos">Projetos</NavItem>
+        <Suspense fallback={<NavFallback />}>
+          <NavItem href="/">Home</NavItem>
+          <NavItem href="/sobre">Sobre mim</NavItem>
+          <NavItem href="/blog">Blog</NavItem>
+          <NavItem href="/projetos">Projetos</NavItem>
+        </Suspense>
       </nav>
 
       <div className="flex-1 flex items-center justify-end">
         <ThemeToggle />
       </div>
     </header>
+  );
+}
+
+function NavFallback() {
+  return (
+    <>
+      <StaticNavItem href="/">Home</StaticNavItem>
+      <StaticNavItem href="/sobre">Sobre mim</StaticNavItem>
+      <StaticNavItem href="/blog">Blog</StaticNavItem>
+      <StaticNavItem href="/projetos">Projetos</StaticNavItem>
+    </>
   );
 }

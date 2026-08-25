@@ -6,7 +6,7 @@ import SectionHeader from "@/component/section-header";
 import { ServerResponseBoundary } from "@/component/server-response-boundary";
 import { MetaUtilities } from "@/utils/meta";
 import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
-import { type FetchBlogPostsQuery, fetchBlogPosts } from "./actions";
+import { fetchBlogPosts } from "./actions";
 import { Content } from "./content";
 import { BlogPostsFilterForm } from "./filter-form";
 import { BlogSectionsSkeleton } from "./skeleton";
@@ -27,9 +27,6 @@ type Props = {
 };
 
 export default async function BlogPostsPage({ searchParams }: Props) {
-  const { q, qb } = await searchParams;
-  const query = resolveQueryParameters({ query: q, queryBy: qb });
-
   return (
     <Main>
       <SectionHeader.Root hasActions>
@@ -38,17 +35,15 @@ export default async function BlogPostsPage({ searchParams }: Props) {
       </SectionHeader.Root>
 
       <Suspense fallback={<BlogSectionsSkeleton />}>
-        <InitialBlogPostsListWrapper query={query} />
+        <InitialBlogPostsListWrapper searchParams={searchParams} />
       </Suspense>
     </Main>
   );
 }
 
-async function InitialBlogPostsListWrapper({
-  query,
-}: {
-  query?: FetchBlogPostsQuery;
-}) {
+async function InitialBlogPostsListWrapper({ searchParams }: Props) {
+  const { q, qb } = await searchParams;
+  const query = resolveQueryParameters({ query: q, queryBy: qb });
   const posts = await tryOrServerInternalError(fetchBlogPosts({ query }));
 
   return (

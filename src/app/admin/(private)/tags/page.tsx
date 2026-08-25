@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { MetaUtilities } from "@/utils/meta";
 import { CreateNewTagAnchor } from "./create-new-tag-anchor";
 import { TagsSection } from "./tags";
@@ -16,8 +17,13 @@ export default function AdminProjectsPage() {
         <CreateNewTagAnchor />
       </header>
       {/* TODO: add filter */}
-      <TagsSection />
-      <TagsPagination />
+
+      <Suspense fallback={<div className="mb-12" />}>
+        <TagsSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <TagsPagination />
+      </Suspense>
     </>
   );
 }

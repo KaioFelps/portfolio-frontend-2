@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { MetaUtilities } from "@/utils/meta";
 import { CreateNewProjectAnchor } from "./create-new-project-anchor";
 import { ProjectsSection } from "./projects";
@@ -16,8 +17,12 @@ export default function AdminProjectsPage() {
         <CreateNewProjectAnchor />
       </header>
       {/* TODO: add filter */}
-      <ProjectsSection />
-      <ProjectsPagination />
+      <Suspense fallback={<div className="mb-12" />}>
+        <ProjectsSection />
+      </Suspense>
+      <Suspense fallback={null}>
+        <ProjectsPagination />
+      </Suspense>
     </>
   );
 }

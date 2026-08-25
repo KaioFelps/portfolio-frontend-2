@@ -6,7 +6,7 @@ import SectionHeader from "@/component/section-header";
 import { ServerResponseBoundary } from "@/component/server-response-boundary";
 import { MetaUtilities } from "@/utils/meta";
 import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
-import { type FetchProjectsQuery, fetchProjects } from "./actions";
+import { fetchProjects } from "./actions";
 import { ProjectCardSkeleton } from "./card/skeleton";
 import { Content } from "./content";
 import { ProjectsFilterForm } from "./filter-form";
@@ -27,9 +27,6 @@ type Props = {
 };
 
 export default async function ProjectsPage({ searchParams }: Props) {
-  const { q, qb } = await searchParams;
-  const query = q && qb ? { by: qb, value: q } : undefined;
-
   return (
     <Main>
       <SectionHeader.Root hasActions>
@@ -49,17 +46,15 @@ export default async function ProjectsPage({ searchParams }: Props) {
           </ProjectsContainer>
         }
       >
-        <InitialProjectsListWrapper query={query} />
+        <InitialProjectsListWrapper searchParams={searchParams} />
       </Suspense>
     </Main>
   );
 }
 
-async function InitialProjectsListWrapper({
-  query,
-}: {
-  query?: FetchProjectsQuery;
-}) {
+export async function InitialProjectsListWrapper({ searchParams }: Props) {
+  const { q, qb } = await searchParams;
+  const query = q && qb ? { by: qb, value: q } : undefined;
   const projects = await tryOrServerInternalError(fetchProjects({ query }));
 
   return (

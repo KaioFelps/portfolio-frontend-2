@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AdminRoutes } from "@/app/routes";
 import { MetaUtilities } from "@/utils/meta";
 import { BlogPosts } from "./posts";
@@ -19,8 +20,12 @@ export default function AdminHomePage() {
         </Link>
       </header>
 
-      <BlogPosts />
-      <BlogPostsPagination />
+      <Suspense fallback={<div className="mb-12" />}>
+        <BlogPosts />
+      </Suspense>
+      <Suspense fallback={null}>
+        <BlogPostsPagination />
+      </Suspense>
     </>
   );
 }

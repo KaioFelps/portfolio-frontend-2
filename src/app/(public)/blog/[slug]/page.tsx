@@ -50,18 +50,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 export default async function BlogPostArticlePage({ params }: Props) {
-  const { slug } = await params;
-
   return (
     <Main>
       <Suspense fallback={null}>
-        <InitialBlogPostsListWrapper slug={slug} />
+        <InitialBlogPostsListWrapper params={params} />
       </Suspense>
     </Main>
   );
 }
 
-async function InitialBlogPostsListWrapper({ slug }: { slug: string }) {
+async function InitialBlogPostsListWrapper({ params }: Props) {
+  const { slug } = await params;
   const post = await tryOrServerInternalError(getPostBySlug({ slug }));
 
   return (
