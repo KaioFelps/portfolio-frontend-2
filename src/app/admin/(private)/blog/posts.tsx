@@ -7,6 +7,7 @@ import type { PropsWithChildren } from "react";
 import { AdminRoutes } from "@/app/routes";
 import { AlertBlock } from "@/component/alert-block";
 import Skeleton from "@/component/skeleton";
+import { DeletePostButton } from "./delete-post-button";
 import { useFetchPosts } from "./hooks/use-fetch-posts";
 import { TogglePostVisibility } from "./toggle-post-visibility";
 
@@ -57,6 +58,7 @@ export function BlogPosts() {
             </div>
 
             <div className="col-span-1 flex items-center justify-end gap-1">
+              <DeletePostButton postId={post.id} postTitle={post.title} />
               <Link
                 className="text-blue-500 p-1.5 rounded-lg"
                 href={`/blog/${post.slug}`}
