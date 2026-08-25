@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
+  cacheComponents: true,
+
   productionBrowserSourceMaps: false,
 
   experimental: {
