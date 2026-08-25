@@ -1,4 +1,5 @@
 import { generatePathFactory } from "..";
+import { deletePost } from "./delete-post";
 import { editPost } from "./edit-post";
 import { fetchPosts } from "./fetch-posts";
 import { findExpandedPost } from "./find-expanded-post";
@@ -13,4 +14,5 @@ export default {
   publishPost,
   findExpandedPost,
   editPost,
+  deletePost,
 };
