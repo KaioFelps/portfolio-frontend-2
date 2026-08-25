@@ -13,7 +13,7 @@ export const AdminRoutes = {
   },
   posts: {
     manage: "/admin/blog" as const,
-    edit: (tagId: string) => `/admin/blog/edit/${tagId}`,
+    edit: (postSlug: string) => `/admin/blog/edit/${postSlug}`,
     new: `/admin/blog/new`,
   },
 };
