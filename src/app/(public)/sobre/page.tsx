@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
   alternates: { canonical: await MetaUtilities.getCanonicalUrl("/sobre") },
 };
 
-export default function AboutMePage() {
+export default async function AboutMePage() {
+  "use cache";
+  cacheLife("weeks");
+
   const myAge = getYearsFromNow(myBirthday);
   const yearsStudying = getYearsFromNow(startedStudyingAt);
 
