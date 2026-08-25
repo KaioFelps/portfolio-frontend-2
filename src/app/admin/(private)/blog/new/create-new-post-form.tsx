@@ -28,6 +28,13 @@ export function CreateNewPostForm() {
 
   const { register, control, formState, handleSubmit, watch, reset } = useForm({
     resolver: zodResolver(createPostSchema),
+    values: {
+      tagsIds: [],
+      content: "",
+      description: "",
+      title: "",
+      topstory: "",
+    },
   });
 
   return (
