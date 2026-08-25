@@ -7,6 +7,8 @@ import { AdminSidebar } from "@/ui/admin/sidebar";
 
 type Props = PropsWithChildren;
 
+export const instant = false;
+
 export default function AuthorizedAdminLayout({ children }: Props) {
   return (
     <AuthProvider>
