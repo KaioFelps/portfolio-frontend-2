@@ -1,5 +1,4 @@
 import { common, createStarryNight } from "@wooorm/starry-night";
-// @ts-expect-error this file DOES exist
 import sourceTsx from "@wooorm/starry-night/source.tsx";
 import { toDom } from "hast-util-to-dom";
 
@@ -7,12 +6,12 @@ const prefix = "language-";
 
 type StarryNight = Awaited<ReturnType<typeof createStarryNight>>;
 
-export class StarryNightSingletone {
+export class StarryNightSingleton {
   private static starryNight: StarryNight | null;
 
   public static async maybeInitialize() {
-    if (!StarryNightSingletone.starryNight) {
-      StarryNightSingletone.starryNight = await createStarryNight([
+    if (!StarryNightSingleton.starryNight) {
+      StarryNightSingleton.starryNight = await createStarryNight([
         ...common,
         sourceTsx,
       ]);
@@ -20,12 +19,21 @@ export class StarryNightSingletone {
   }
 
   private static async getOrInitalize(): Promise<StarryNight> {
-    await StarryNightSingletone.maybeInitialize();
-    return StarryNightSingletone.starryNight!;
+    await StarryNightSingleton.maybeInitialize();
+    return StarryNightSingleton.starryNight!;
+  }
+
+  /**
+   * Synchronous accessor for use inside ProseMirror plugin state (which
+   * can't await anything). Returns `null` until `maybeInitialize()` has
+   * resolved at least once — pair with `useStarryNightHighlighter()`.
+   */
+  public static getSync(): StarryNight | null {
+    return StarryNightSingleton.starryNight ?? null;
   }
 
   public static async clientSideHighlight(nodes: Element[]) {
-    const starryNight = await StarryNightSingletone.getOrInitalize();
+    const starryNight = await StarryNightSingleton.getOrInitalize();
 
     for (const node of nodes) {
       const language =
