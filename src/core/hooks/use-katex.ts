@@ -6,22 +6,28 @@ import { useLayoutEffect, useRef } from "react";
 
 type Args = { content?: string };
 
-export function useKatex({ content }: Args) {
+const KATEX_OPTIONS = {
+  delimiters: [
+    { left: "$$", right: "$$", display: true },
+    { left: "$", right: "$", display: false },
+    { left: "\\(", right: "\\)", display: false },
+    { left: "\\[", right: "\\]", display: true },
+  ],
+  throwOnError: false,
+};
+
+export function useKatex({ content }: Args = {}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (!content || !ref.current) return;
-
-    renderMathInElement(ref.current, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\(", right: "\\)", display: false },
-        { left: "\\[", right: "\\]", display: true },
-      ],
-      throwOnError: false,
-    });
+    useKatex.renderMath(ref.current);
   }, [content]);
 
   return { ref };
 }
+
+useKatex.renderMath = (node: HTMLElement | null) => {
+  if (!node) return;
+  renderMathInElement(node, KATEX_OPTIONS);
+};
