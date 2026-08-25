@@ -67,7 +67,7 @@ export function Content({ initialData, postsQuery: query }: Props) {
   }
 
   return (
-    <div className="mt-16">
+    <div className="mt-16 w-full">
       {Object.entries(postsPerDate).map(([date, posts]) => (
         <div
           className="mb-16 last-of-type:mb-0"
