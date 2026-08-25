@@ -120,7 +120,7 @@ export function CreateNewPostForm() {
         </FloatingInput.Group>
       </form>
 
-      <h3 className="text-xl font-bold mb-3">Editor</h3>
+      <h3 className="text-xl font-bold mb-16">Editor</h3>
 
       <Controller
         control={control}

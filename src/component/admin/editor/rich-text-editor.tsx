@@ -49,6 +49,10 @@ const HEADING_LEVELS = [1, 2, 3, 4, 5, 6] as const;
 const FONT_SIZES = [11, 12, 14, 16, 18, 20, 32, 40, 48, 56, 70] as const;
 
 interface RichTextEditorProps {
+  /**
+   * The controlled HTML content.
+   */
+  content?: string;
   /** Initial HTML content. Only used on mount, same as the original component. */
   initialContent?: string;
   /** Called with the current HTML every time the document changes (create + update). */
@@ -57,7 +61,8 @@ interface RichTextEditorProps {
 }
 
 export function RichTextEditor({
-  initialContent = "<p>Olá, plantas! 🪴</p>",
+  content,
+  initialContent,
   onChange,
   ref: editorElementRef,
 }: RichTextEditorProps) {
@@ -98,10 +103,19 @@ export function RichTextEditor({
         protocols: ["http", "https"],
       }),
     ],
-    content: initialContent,
+    content: initialContent ?? content ?? "<p>Olá, plantas! 🪴</p>",
     onCreate: ({ editor: createdEditor }) => onChange(createdEditor.getHTML()),
     onUpdate: ({ editor: updatedEditor }) => onChange(updatedEditor.getHTML()),
   });
+
+  useEffect(() => {
+    const isUncontrolled = content === undefined;
+    if (!editor || isUncontrolled) return;
+
+    if (editor.getHTML() !== content) {
+      editor.commands.setContent(content, { emitUpdate: false });
+    }
+  }, [content, editor]);
 
   // loads (and caches) the Starry Night grammars once, then nudges the
   // decoration plugin to recompute as soon as they're ready — otherwise any
@@ -189,8 +203,8 @@ export function RichTextEditor({
       <div
         id="editor-bar"
         className={clsx(
-          "p-2 bg-d-gray-200 border-y border-white/5 flex flex-row flex-wrap gap-2 rounded-lg mb-4 shadow-md shadow-black/30",
-          "sticky top-0 z-10",
+          "p-2 bg-d-gray-200 border-y border-white/5 flex flex-row flex-wrap gap-2 rounded-lg shadow-md shadow-black/30",
+          "sticky top-0 z-10 -translate-y-12 -mb-8",
         )}
       >
         <EditorSet title="Formatar" options={headingAndBlockOptions} />
