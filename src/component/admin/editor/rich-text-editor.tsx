@@ -28,7 +28,7 @@ import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { type RefCallback, useEffect, useRef, useState } from "react";
 import { useStarryNightHighlighter } from "@/core/hooks/use-starry-night";
 import CodeBlockIndent from "@/lib/tiptap/code-block-indent";
 import FontSize from "@/lib/tiptap/font-size";
@@ -53,16 +53,17 @@ interface RichTextEditorProps {
   initialContent?: string;
   /** Called with the current HTML every time the document changes (create + update). */
   onChange: (html: string) => void;
+  ref?: RefCallback<HTMLDivElement>;
 }
 
 export function RichTextEditor({
   initialContent = "<p>Olá, plantas! 🪴</p>",
   onChange,
+  ref: editorElementRef,
 }: RichTextEditorProps) {
   const [isDisplayingSourceCode, setIsDisplayingSourceCode] = useState(false);
   const [sourceDraft, setSourceDraft] = useState("");
 
-  const editorElementRef = useRef<HTMLDivElement>(null);
   const rawHtmlTextareaRef = useRef<HTMLTextAreaElement>(null);
 
   const editor = useEditor({
@@ -73,7 +74,7 @@ export function RichTextEditor({
       attributes: { class: "text-container" },
     },
     extensions: [
-      StarterKit.configure({ hardBreak: false }),
+      StarterKit.configure({ hardBreak: false, underline: false, link: false }),
       HardBreak.extend({
         renderText() {
           return "\n";
@@ -363,7 +364,7 @@ export function RichTextEditor({
         )}
       >
         {isDisplayingSourceCode ? (
-          // Plain, uncontrolled-by-tiptap textarea: React sets `.value`
+          // plain, uncontrolled-by-tiptap textarea: React sets `.value`
           // directly, no HTML parsing involved, so nothing here can ever be
           // misread as an entity, a tag, or `$...$` math.
           <textarea
