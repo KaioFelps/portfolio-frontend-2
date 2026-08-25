@@ -37,6 +37,8 @@ export const RQKeys = {
       [...RQKeys.posts.base, "fetch-paginated"] as const,
     fetchPaginated: (filters: object | undefined) =>
       [...RQKeys.posts.fetchPaginatedBase(), filters] as const,
+    findBySlug: (slug: string) =>
+      [...RQKeys.posts.base, "find-by-slug", slug] as const,
   },
 } as const;
 
