@@ -4,6 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegments } from "next/navigation";
 import type { PropsWithChildren } from "react";
+import type { PropsWithClassName } from "@/core/types/props";
 
 type NavItemProps = PropsWithChildren<{
   href: string;
@@ -18,11 +19,9 @@ export function NavItem({ href, children }: NavItemProps) {
     (currentSegments.length && href.startsWith(`/${currentSegments[0]}`));
 
   return (
-    <Link
+    <StaticNavItem
       href={href}
       className={clsx(
-        "transition-all leading-none duration-75 text-black font-medium",
-        "px-4 pt-2 pb-1.5 border-[transparent] border-b text-nowrap",
         isActive
           ? [
               "dark:text-yellow-600 border-b dark:border-yellow-900 not-dark:border-yellow-500",
@@ -32,6 +31,25 @@ export function NavItem({ href, children }: NavItemProps) {
               "dark:text-white not-dark:hover:border-yellow-500 dark:hover:border-yellow-900/50 hover:bg-yellow-500/10",
               "rounded-ss-md rounded-se-md",
             ],
+      )}
+    >
+      {children}
+    </StaticNavItem>
+  );
+}
+
+export function StaticNavItem({
+  href,
+  children,
+  className,
+}: PropsWithClassName<NavItemProps>) {
+  return (
+    <Link
+      href={href}
+      className={clsx(
+        "transition-all leading-none duration-75 text-black font-medium",
+        "px-4 pt-2 pb-1.5 border-transparent border-b text-nowrap",
+        className,
       )}
     >
       {children}
