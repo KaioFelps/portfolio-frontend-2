@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { type FocusEventHandler, type RefCallback, useMemo } from "react";
+import { useFetchEveryTag } from "@/app/admin/(private)/hooks/use-fetch-every-tag";
 import { AlertBlock } from "@/component/alert-block";
 import FloatingInput from "@/component/floating-input";
-import { useFetchEveryTag } from "../../hooks/use-fetch-every-tag";
 
 type Props = {
   selectedTagsIds: string[];

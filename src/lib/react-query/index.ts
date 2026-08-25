@@ -31,6 +31,15 @@ export const RQKeys = {
     fetchPaginated: (filters: object | undefined) =>
       [...RQKeys.tags.fetchPaginatedBase(), filters] as const,
   },
+  posts: {
+    base: ["posts"] as const,
+    fetchPaginatedBase: () =>
+      [...RQKeys.posts.base, "fetch-paginated"] as const,
+    fetchPaginated: (filters: object | undefined) =>
+      [...RQKeys.posts.fetchPaginatedBase(), filters] as const,
+    findBySlug: (slug: string) =>
+      [...RQKeys.posts.base, "find-by-slug", slug] as const,
+  },
 } as const;
 
 Object.freeze(RQKeys);

@@ -11,6 +11,11 @@ export const AdminRoutes = {
     edit: (tagId: string) => `/admin/tags/edit/${tagId}`,
     new: `/admin/tags/new`,
   },
+  posts: {
+    manage: "/admin/blog" as const,
+    edit: (postSlug: string) => `/admin/blog/edit/${postSlug}`,
+    new: `/admin/blog/new`,
+  },
 };
 
 Object.freeze(AdminRoutes);
