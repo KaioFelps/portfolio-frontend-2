@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
 
+  productionBrowserSourceMaps: false,
+
+  outputFileTracingExcludes: {
+    "*": [
+      "node_modules/@swc/core-linux-x64-musl",
+      "node_modules/@esbuild/**",
+      "node_modules/webpack/**",
+      "node_modules/typescript/**",
+      "node_modules/.cache/**",
+      "node_modules/@img/sharp-libvips*/**",
+      "**/*.map",
+    ],
+  },
+
   experimental: {
     webpackMemoryOptimizations: true,
     optimizePackageImports: [
