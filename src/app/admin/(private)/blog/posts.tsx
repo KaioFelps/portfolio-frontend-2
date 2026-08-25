@@ -68,7 +68,7 @@ export function BlogPosts() {
               </Link>
               <Link
                 className="p-1.5 rounded-lg"
-                href={AdminRoutes.posts.edit(post.id)}
+                href={AdminRoutes.posts.edit(post.slug)}
               >
                 <PencilIcon size="20" weight="fill" />
               </Link>
