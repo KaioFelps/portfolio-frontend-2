@@ -49,7 +49,7 @@ export function SelectContent({
               "data-closed:data-starting-style:opaity-1 data-closed:data-ending-style:opacity-0 ",
             ],
           )}
-          style={style}
+          style={style as React.CSSProperties}
         >
           {children}
         </Content>
