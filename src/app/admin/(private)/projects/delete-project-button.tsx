@@ -16,7 +16,7 @@ export function DeleteProjectButton({ projectTitle, projectId }: Props) {
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
-      <AlertDialog.Trigger className="text-red-600">
+      <AlertDialog.Trigger className="text-red-600 p-1.5 rounded-lg hover:bg-red-600/20">
         <TrashIcon size="20" weight="bold" />
       </AlertDialog.Trigger>
 
@@ -27,7 +27,7 @@ export function DeleteProjectButton({ projectTitle, projectId }: Props) {
           </AlertDialog.Title>
           <AlertDialog.Description className="text-sm text-foreground-alt">
             Esta é uma ação irreversível. O projeto será permanentemente
-            removido dos registros. Tem certeza de que deseja apagar o projeto
+            removido dos registros. Tem certeza de que deseja apagar o projeto{" "}
             <span className="font-bold">"{projectTitle}"</span>?
           </AlertDialog.Description>
         </div>

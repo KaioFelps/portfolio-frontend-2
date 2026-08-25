@@ -42,15 +42,18 @@ export function ProjectsSection() {
           {data.projects.map((project) => (
             <div
               key={`admin-project-management-project-${project.id}`}
-              className="flex justify-between gap-3 items-center p-4 rounded-2xl bg-white/5"
+              className="flex justify-between gap-3 items-center px-4 py-2.5 rounded-2xl bg-white/5"
             >
               <span className="font-medium">{project.title}</span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1">
                 <DeleteProjectButton
                   projectTitle={project.title}
                   projectId={project.id}
                 />
-                <Link href={AdminRoutes.projects.edit(project.id)}>
+                <Link
+                  href={AdminRoutes.projects.edit(project.id)}
+                  className="p-1.5 rounded-lg"
+                >
                   <PencilIcon size="20" weight="bold" />
                 </Link>
               </div>

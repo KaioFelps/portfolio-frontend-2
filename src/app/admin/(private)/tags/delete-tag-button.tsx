@@ -15,7 +15,7 @@ export function DeleteTagButton({ tag }: Props) {
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
-      <AlertDialog.Trigger className="text-red-600">
+      <AlertDialog.Trigger className="text-red-600 p-1.5 rounded-lg hover:bg-red-600/20">
         <TrashIcon size="20" weight="bold" />
       </AlertDialog.Trigger>
 
@@ -28,8 +28,7 @@ export function DeleteTagButton({ tag }: Props) {
             Esta é uma ação irreversível. A tag será permanentemente removida
             removido dos registros, e todos os projetos e blogposts serão
             desassociados dela (mas não removidos). Tem certeza de que deseja
-            apagar a tag
-            <span className="font-bold">"{tag.value}"</span>?
+            apagar a tag <span className="font-bold">"{tag.value}"</span>?
           </AlertDialog.Description>
         </div>
         <div className="flex w-full items-end justify-center gap-2">
@@ -49,7 +48,7 @@ export function DeleteTagButton({ tag }: Props) {
                 {isProcessing ? "Apagando" : "Apagar"}
               </button>
             )}
-          ></AlertDialog.Close>
+          />
         </div>
       </AlertDialog.Content>
     </AlertDialog.Root>

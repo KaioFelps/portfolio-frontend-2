@@ -27,10 +27,10 @@ export function TagsSection() {
             {tags.map((tag) => (
               <div
                 key={`admin-page-tags-${tag.id}`}
-                className="flex justify-between gap-3 items-center p-4 rounded-2xl bg-white/5"
+                className="flex justify-between gap-3 items-center px-4 py-2.5 rounded-2xl bg-white/5"
               >
                 <span className="font-medium">{tag.value}</span>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
                   <DeleteTagButton tag={tag} />
                   <EditTagDialog tag={tag} />
                 </div>

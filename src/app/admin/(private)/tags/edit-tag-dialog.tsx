@@ -47,7 +47,7 @@ export function EditTagDialog({ tag }: Props) {
 
   return (
     <AlertDialog.Root open={open} onOpenChange={setOpen}>
-      <AlertDialog.Trigger className="text-white">
+      <AlertDialog.Trigger className="text-yellow-500 p-1.5 rounded-lg">
         <PencilIcon size="20" weight="bold" />
       </AlertDialog.Trigger>
 
