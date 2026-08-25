@@ -9,10 +9,10 @@ import { AlertBlock } from "@/component/alert-block";
 import FloatingInput from "@/component/floating-input";
 import { getChangedFields } from "@/lib/react-hook-form";
 import toast from "@/lib/toast";
+import { AvailableTagsSelect } from "@/ui/admin/available-tags-select";
 import { useFetchEveryTag } from "../../../hooks/use-fetch-every-tag";
 import { useFindProject } from "../../hooks/use-find-project";
 import { AddNewProjectLinkForm } from "../../ui/add-new-project-link-form";
-import { AvailableTagsSelect } from "../../ui/available-tags-select";
 import { useEditProject } from "./hooks/use-edit-project";
 import { type EditProjectFormData, editProjectSchema } from "./schema";
 

@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { AdminRoutes } from "@/app/routes";
 import FloatingInput from "@/component/floating-input";
+import { AvailableTagsSelect } from "@/ui/admin/available-tags-select";
 import { useFetchEveryTag } from "../../hooks/use-fetch-every-tag";
 import { AddNewProjectLinkForm } from "../ui/add-new-project-link-form";
-import { AvailableTagsSelect } from "../ui/available-tags-select";
 import { useCreateProject } from "./hooks/use-create-project";
 import { createProjectSchema } from "./schema";
 
