@@ -6,7 +6,7 @@ import { SocialMedias } from "@/config/social-media";
 
 export function Footer() {
   return (
-    <footer className="w-full h-[109px] px-16 flex items-center justify-center mt-20 shrink-0">
+    <footer className="w-full h-27.25 px-16 flex flex-col items-center justify-center gap-0.5 mt-20 shrink-0">
       <div
         className={clsx(
           "flex flex-row gap-2 prose-a:leading-none prose-a:p-2 prose-a:rounded-lg prose-a:transition-all",
@@ -25,6 +25,9 @@ export function Footer() {
           <BehanceLogoIcon size="24" weight="fill" /> Behance
         </a>
       </div>
+      <p className="opacity-50 text-xs font-light">
+        © Todos os direitos reservados.
+      </p>
     </footer>
   );
 }
