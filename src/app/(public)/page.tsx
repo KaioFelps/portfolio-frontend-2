@@ -13,7 +13,7 @@ export default function Home() {
     <Main>
       <h1 className="colorful-main-title mb-10 text-center">Kaio Felipe</h1>
 
-      <h2 className="mb-12 font-black text-3xl text-center text-balance max-w-[500px] text-yellow-900 lowercase">
+      <h2 className="mb-12 font-black text-3xl text-center text-balance max-w-125 text-yellow-900 lowercase">
         Desenvolvedor full-stack, cientista da computação, engenheiro de
         software ou alguma coisa do tipo
       </h2>
@@ -22,7 +22,7 @@ export default function Home() {
         className="group btn default text-lg font-semibold uppercase"
         href="/projetos"
       >
-        <span className="max-2xs:hidden">Confira meus</span> projetos
+        <span className="max-2xs:hidden">Meus </span>projetos
         <ArrowRightIcon
           size="20"
           weight="bold"
