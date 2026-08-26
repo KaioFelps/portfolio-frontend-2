@@ -162,6 +162,10 @@
     @apply prose-ul:p-0.5 prose-ul:mr-4 prose-ul:ml-4 prose-ol:p-0.5 prose-ol:mr-4 prose-ol:ml-4 prose-ul:prose-li:prose-p:my-1 prose-ol:prose-li:prose-p:my-1 prose-ul:list-disc prose-ol:list-decimal prose-li:prose-p:!mb-0;
 
     @apply prose-h1:text-3xl prose-h1:font-black prose-h2:text-2xl prose-h2:font-black prose-h3:text-xl prose-h3:font-bold prose-h4:text-lg prose-h4:font-bold prose-h5:text-lg prose-h5:font-semibold prose-h6:text-base prose-h6:font-medium;
+
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    hyphens: auto;
   }
 
   .colorful-main-title {
