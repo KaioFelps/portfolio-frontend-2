@@ -25,7 +25,7 @@ import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import { TextStyle } from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import clsx from "clsx";
 import { type RefCallback, useEffect, useRef, useState } from "react";
@@ -40,6 +40,7 @@ import { ColorPicker } from "./color-picker";
 import { EditorButton } from "./editor-button";
 import { EditorSet } from "./editor-set";
 import { HyperlinkDialog } from "./hyperlink-dialog";
+import { ImageInsertDialog } from "./image-insert-dialog";
 import StarryNightHighlight, {
   starryNightHighlightPluginKey,
 } from "./starry-night-highlight";
@@ -47,6 +48,7 @@ import type { ToolbarOption } from "./types";
 
 const HEADING_LEVELS = [1, 2, 3, 4, 5, 6] as const;
 const FONT_SIZES = [11, 12, 14, 16, 18, 20, 32, 40, 48, 56, 70] as const;
+const TEXT_ALIGNS = ["left", "center", "right", "justify"] as const;
 
 interface RichTextEditorProps {
   /**
@@ -157,26 +159,59 @@ export function RichTextEditor({
     setIsDisplayingSourceCode((prev) => !prev);
   };
 
-  if (!editor) return null;
+  const toolbarState = useEditorState({
+    editor,
+    selector: ({ editor: currentEditor }) => {
+      if (!currentEditor) return null;
+
+      return {
+        headingLevels: HEADING_LEVELS.map((level) =>
+          currentEditor.isActive("heading", { level }),
+        ),
+        isCode: currentEditor.isActive("code"),
+        isCodeBlock: currentEditor.isActive("codeBlock"),
+        isParagraph: currentEditor.isActive("paragraph"),
+        fontSizes: FONT_SIZES.map((size) =>
+          currentEditor.isActive("textStyle", { fontSize: `${size}px` }),
+        ),
+        isBold: currentEditor.isActive("bold"),
+        isItalic: currentEditor.isActive("italic"),
+        isUnderline: currentEditor.isActive("underline"),
+        isStrike: currentEditor.isActive("strike"),
+        textAligns: TEXT_ALIGNS.map((align) =>
+          currentEditor.isActive({ textAlign: align }),
+        ),
+        isHorizontalRule: currentEditor.isActive("horizontalRule"),
+        isBlockquote: currentEditor.isActive("blockquote"),
+        isSuperscript: currentEditor.isActive("superscript"),
+        isSubscript: currentEditor.isActive("subscript"),
+        isBulletList: currentEditor.isActive("bulletList"),
+        isOrderedList: currentEditor.isActive("orderedList"),
+        isLink: currentEditor.isActive("link"),
+      };
+    },
+  });
+
+  if (!editor || !toolbarState) return null;
 
   const headingAndBlockOptions: ToolbarOption[] = [
-    ...HEADING_LEVELS.map((level) => ({
-      active: editor.isActive("heading", { level }),
+    ...HEADING_LEVELS.map((level, index) => ({
+      active: toolbarState.headingLevels[index],
       handler: () => editor.chain().focus().toggleHeading({ level }).run(),
       title: `H${level}`,
     })),
     {
-      active: editor.isActive("code"),
+      active: toolbarState.isCode,
       handler: () => editor.chain().focus().toggleCode().run(),
       title: "Linha de código",
     },
     {
-      active: editor.isActive("codeBlock"),
+      active: toolbarState.isCodeBlock,
       handler: () => editor.chain().focus().toggleCodeBlock().run(),
       title: "Bloco de código",
     },
     {
-      active: editor.isActive("paragraph"),
+      active: toolbarState.isParagraph,
       handler: () => editor.chain().focus().setParagraph().run(),
       title: "Parágrafo",
     },
@@ -188,14 +223,11 @@ export function RichTextEditor({
       handler: () => editor.chain().focus().unsetFontSize().run(),
       title: "Restaurar",
     },
-    ...FONT_SIZES.map((size) => {
-      const fontSize = `${size}px`;
-      return {
-        active: editor.isActive("textStyle", { fontSize }),
-        handler: () => editor.chain().focus().setFontSize(fontSize).run(),
-        title: fontSize,
-      };
-    }),
+    ...FONT_SIZES.map((size, index) => ({
+      active: toolbarState.fontSizes[index],
+      handler: () => editor.chain().focus().setFontSize(`${size}px`).run(),
+      title: `${size}px`,
+    })),
   ];
 
   return (
@@ -212,7 +244,7 @@ export function RichTextEditor({
         <div className="flex flex-row items-center gap-1">
           <EditorButton
             title="Negrito"
-            active={editor.isActive("bold")}
+            active={toolbarState.isBold}
             onClick={() => editor.chain().focus().toggleBold().run()}
           >
             <TextBIcon weight="bold" size={20} />
@@ -220,7 +252,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Itálico"
-            active={editor.isActive("italic")}
+            active={toolbarState.isItalic}
             onClick={() => editor.chain().focus().toggleItalic().run()}
           >
             <TextItalicIcon weight="bold" size={20} />
@@ -228,7 +260,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Underline"
-            active={editor.isActive("underline")}
+            active={toolbarState.isUnderline}
             onClick={() => editor.chain().focus().toggleUnderline().run()}
           >
             <TextUnderlineIcon weight="bold" size={20} />
@@ -236,7 +268,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Riscar"
-            active={editor.isActive("strike")}
+            active={toolbarState.isStrike}
             onClick={() => editor.chain().focus().toggleStrike().run()}
           >
             <TextStrikethroughIcon weight="bold" size={20} />
@@ -250,7 +282,7 @@ export function RichTextEditor({
         <div className="flex flex-row items-center gap-1">
           <EditorButton
             title="Alinhar à esquerda"
-            active={editor.isActive({ textAlign: "left" })}
+            active={toolbarState.textAligns[0]}
             onClick={() => editor.chain().focus().toggleTextAlign("left").run()}
           >
             <TextAlignLeftIcon weight="bold" size={20} />
@@ -258,7 +290,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Alinhar ao centro"
-            active={editor.isActive({ textAlign: "center" })}
+            active={toolbarState.textAligns[1]}
             onClick={() =>
               editor.chain().focus().toggleTextAlign("center").run()
             }
@@ -268,7 +300,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Alinhar à direita"
-            active={editor.isActive({ textAlign: "right" })}
+            active={toolbarState.textAligns[2]}
             onClick={() =>
               editor.chain().focus().toggleTextAlign("right").run()
             }
@@ -278,7 +310,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Justificar"
-            active={editor.isActive({ textAlign: "justify" })}
+            active={toolbarState.textAligns[3]}
             onClick={() =>
               editor.chain().focus().toggleTextAlign("justify").run()
             }
@@ -290,7 +322,7 @@ export function RichTextEditor({
         <div className="flex flex-row items-center gap-1">
           <EditorButton
             title="Linha Horizontal"
-            active={editor.isActive("horizontalRule")}
+            active={toolbarState.isHorizontalRule}
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
           >
             <MinusIcon weight="bold" size={20} />
@@ -298,7 +330,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Quote"
-            active={editor.isActive("blockquote")}
+            active={toolbarState.isBlockquote}
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
           >
             <QuotesIcon weight="bold" size={20} />
@@ -306,7 +338,7 @@ export function RichTextEditor({
 
           <EditorButton
             title="Super-escrita"
-            active={editor.isActive("superscript")}
+            active={toolbarState.isSuperscript}
             onClick={() => editor.chain().focus().toggleSuperscript().run()}
           >
             <TextSuperscriptIcon weight="bold" size={20} />
@@ -314,14 +346,14 @@ export function RichTextEditor({
 
           <EditorButton
             title="Sub-escrita"
-            active={editor.isActive("subscript")}
+            active={toolbarState.isSubscript}
             onClick={() => editor.chain().focus().toggleSubscript().run()}
           >
             <TextSubscriptIcon weight="bold" size={20} />
           </EditorButton>
 
           <EditorButton
-            active={editor.isActive("bulletList")}
+            active={toolbarState.isBulletList}
             title="Lista"
             onClick={() => editor.chain().focus().toggleBulletList().run()}
           >
@@ -329,7 +361,7 @@ export function RichTextEditor({
           </EditorButton>
 
           <EditorButton
-            active={editor.isActive("orderedList")}
+            active={toolbarState.isOrderedList}
             title="Lista Enumerada"
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
           >
@@ -337,6 +369,7 @@ export function RichTextEditor({
           </EditorButton>
 
           <HyperlinkDialog editor={editor} />
+          <ImageInsertDialog editor={editor} />
         </div>
 
         <div className="flex flex-row items-center gap-1">
@@ -378,9 +411,6 @@ export function RichTextEditor({
         )}
       >
         {isDisplayingSourceCode ? (
-          // plain, uncontrolled-by-tiptap textarea: React sets `.value`
-          // directly, no HTML parsing involved, so nothing here can ever be
-          // misread as an entity, a tag, or `$...$` math.
           <textarea
             value={sourceDraft}
             onChange={(event) => setSourceDraft(event.target.value)}
