@@ -4,6 +4,7 @@ import { Menu } from "@base-ui/react/menu";
 import { CaretUpIcon } from "@phosphor-icons/react/dist/ssr/CaretUp";
 import clsx from "clsx";
 import { useMemo } from "react";
+import { EditorButton } from "./editor-button";
 import type { ToolbarOption } from "./types";
 
 interface EditorSetProps {
@@ -22,19 +23,21 @@ export function EditorSet({ title, options }: EditorSetProps) {
     <Menu.Root>
       <Menu.Trigger
         className={clsx(
-          "w-32 group flex items-center justify-between px-2 py-1 rounded-md",
-          "bg-white/10 hover:bg-white/15 active:bg-white/20 gap-3",
+          "w-32 group flex items-center justify-between px-2 py-1 rounded-md gap-3",
         )}
-      >
-        <span className="inline-block text-start w-full line-clamp-1 text-ellipsis whitespace-nowrap overflow-hidden">
-          {triggerTitle}
-        </span>
-        <CaretUpIcon
-          size={20}
-          weight="regular"
-          className="group-aria-expanded:rotate-180 transition-all duration-300"
-        />
-      </Menu.Trigger>
+        render={(props) => (
+          <EditorButton {...props}>
+            <span className="inline-block text-start w-full line-clamp-1 text-ellipsis whitespace-nowrap overflow-hidden">
+              {triggerTitle}
+            </span>
+            <CaretUpIcon
+              size={20}
+              weight="regular"
+              className="group-aria-expanded:rotate-180 transition-all duration-300"
+            />
+          </EditorButton>
+        )}
+      ></Menu.Trigger>
 
       <Menu.Portal>
         <Menu.Positioner

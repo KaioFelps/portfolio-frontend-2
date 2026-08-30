@@ -17,8 +17,9 @@ export const EditorButton = forwardRef<HTMLButtonElement, EditorButtonProps>(
         type={type}
         {...rest}
         className={clsx(
-          "p-2 rounded-md bg-white/10 leading-none cursor-default transition-all",
-          !active && "hover:bg-white/15 active:bg-white/20",
+          "p-2 rounded-md bg-d-gray-300 leading-none cursor-default transition-all",
+          "focus-visible:ring-4 ring-yellow-500/40 ring-0 outline-none",
+          !active && "hover:bg-gray-600 active:scale-95",
           active && "bg-white/1 text-white/60 ring-1 ring-white/10",
           className,
         )}
