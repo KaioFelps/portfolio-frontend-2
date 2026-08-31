@@ -23,7 +23,7 @@ export async function findExpandedPost({
 }: FindExpandedPostParams): Promise<FindExpandedPostResponse> {
   try {
     const response = await axios.get<FindExpandedPostResponse>(
-      mountPath(`${postSlug}/show`),
+      mountPath(`${postSlug}/show/admin`),
     );
 
     return response.data;
