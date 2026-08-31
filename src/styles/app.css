@@ -162,7 +162,8 @@
 
     @apply prose-inline-code:bg-gray-200 dark:prose-inline-code:bg-black/50 prose-inline-code:border prose-inline-code:border-gray-300 dark:prose-inline-code:border-d-gray-300 prose-inline-code:rounded-lg prose-inline-code:px-2 prose-inline-code:py-0.5 prose-inline-code:text-yellow-900 dark:prose-inline-code:text-yellow-600 prose-inline-code:text-base;
 
-    @apply prose-blockquote:p-3 prose-blockquote:border-l-4 prose-blockquote:border-l-yellow-600 prose-blockquote:bg-gray-100 dark:prose-blockquote:bg-d-gray-100 prose-blockquote:rounded-se-xl prose-blockquote:rounded-ee-xl;
+    @apply prose-blockquote:p-4 prose-blockquote:border-l-4 prose-blockquote:border-l-yellow-600 prose-blockquote:bg-gray-100 dark:prose-blockquote:bg-d-gray-100 prose-blockquote:rounded-se-xl prose-blockquote:rounded-ee-xl;
+    @apply prose-blockquote:*:last:mb-0!;
 
     @apply prose-ul:p-0.5 prose-ul:mr-4 prose-ul:ml-4 prose-ol:p-0.5 prose-ol:mr-4 prose-ol:ml-4 prose-ul:prose-li:prose-p:my-1 prose-ol:prose-li:prose-p:my-1 prose-ul:list-disc prose-ol:list-decimal prose-li:prose-p:!mb-0;
 
@@ -171,6 +172,7 @@
     text-rendering: optimizeLegibility;
     font-kerning: normal;
     hyphens: auto;
+    line-height: 1.75;
   }
 
   .colorful-main-title {
