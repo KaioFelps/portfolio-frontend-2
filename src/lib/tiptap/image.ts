@@ -1,12 +1,13 @@
 "use client";
 
 import _Image from "@tiptap/extension-image";
+import type { DOMOutputSpec } from "@tiptap/pm/model";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 import { ImageNodeView } from "@/component/admin/editor/image-node-view";
 
 function attrsFromFigure(figure: HTMLElement) {
   const img = figure.querySelector("img");
-  if (!img) return false; // sem <img>, não reconhece como imagem
+  if (!img) return false;
 
   const anchor = figure.querySelector("a");
   const figcaption = figure.querySelector("figcaption");
@@ -21,12 +22,15 @@ function attrsFromFigure(figure: HTMLElement) {
     figureClass: figure.getAttribute("class"),
     figureStyle: figure.getAttribute("style"),
     href: anchor?.getAttribute("href") ?? null,
+    openInNewTab: anchor ? anchor.getAttribute("target") === "_blank" : true,
     caption: figcaption?.textContent ?? null,
+    asFigure: true,
   };
 }
 
 function attrsFromBareImg(img: HTMLElement) {
   const width = img.getAttribute("width");
+  const anchor = img.closest("a");
 
   return {
     src: img.getAttribute("src"),
@@ -36,8 +40,10 @@ function attrsFromBareImg(img: HTMLElement) {
     imgStyle: img.getAttribute("style"),
     figureClass: null,
     figureStyle: null,
-    href: img.closest("a")?.getAttribute("href") ?? null,
+    href: anchor?.getAttribute("href") ?? null,
+    openInNewTab: anchor ? anchor.getAttribute("target") === "_blank" : true,
     caption: null,
+    asFigure: false,
   };
 }
 
@@ -46,13 +52,15 @@ const Image = _Image.extend({
     return {
       src: { default: null },
       alt: { default: null },
-      width: { default: null }, // vira o atributo HTML `width` no <img>, nunca style
+      width: { default: null },
       imgClass: { default: null },
       imgStyle: { default: null },
       figureClass: { default: null },
       figureStyle: { default: null },
       href: { default: null },
+      openInNewTab: { default: true },
       caption: { default: null },
+      asFigure: { default: true },
     };
   },
 
@@ -83,10 +91,12 @@ const Image = _Image.extend({
       figureClass,
       figureStyle,
       href,
+      openInNewTab,
       caption,
+      asFigure,
     } = HTMLAttributes;
 
-    const img = [
+    const img: DOMOutputSpec = [
       "img",
       {
         src,
@@ -97,9 +107,19 @@ const Image = _Image.extend({
       },
     ];
 
-    const body = href
-      ? ["a", { href, target: "_blank", rel: "noopener noreferrer" }, img]
+    const body: DOMOutputSpec = href
+      ? [
+          "a",
+          {
+            href,
+            target: openInNewTab === false ? null : "_blank",
+            rel: "noopener noreferrer",
+          },
+          img,
+        ]
       : img;
+
+    if (!asFigure) return body;
 
     return [
       "figure",
