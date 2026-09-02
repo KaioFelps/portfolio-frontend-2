@@ -14,10 +14,10 @@ export function ArticleCard({
   post: BlogPost;
   navigate: (href: string) => void;
 }) {
-  const handleCopyArticleUrl: MouseEventHandler = (e) => {
+  const handleCopyArticleUrl: MouseEventHandler = async (e) => {
     e.preventDefault();
     const url = new URL(`/blog/${post.slug}`, window.location.href);
-    navigator.clipboard.writeText(url.toString());
+    await navigator.clipboard.writeText(url.toString());
     toast.add({ description: "Link copiado!" });
   };
 
