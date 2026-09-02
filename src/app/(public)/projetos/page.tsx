@@ -52,7 +52,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
   );
 }
 
-export async function InitialProjectsListWrapper({ searchParams }: Props) {
+async function InitialProjectsListWrapper({ searchParams }: Props) {
   const { q, qb } = await searchParams;
   const query = q && qb ? { by: qb, value: q } : undefined;
   const projects = await tryOrServerInternalError(fetchProjects({ query }));
