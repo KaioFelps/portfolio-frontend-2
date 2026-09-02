@@ -21,7 +21,6 @@ const nextConfig: NextConfig = {
       "@tiptap/react",
       "@tiptap/core",
       "@tiptap/starter-kit",
-      "@wooorm/starry-night",
       "katex",
       "axios",
     ],
