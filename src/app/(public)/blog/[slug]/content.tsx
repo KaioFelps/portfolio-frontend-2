@@ -75,7 +75,7 @@ export function Content({ post }: Props) {
               {post.tags.map((tag) => (
                 <Link
                   key={`blogpost-${post.id}-tags-${tag.id}`}
-                  href={`/blog?queryBy=tag&query=${tag.value}`}
+                  href={`/blog?qb=tag&q=${tag.value}`}
                   className={clsx(
                     "flex",
                     "group cursor-default text-black rounded-full px-2.5 pt-1 pb-0.5 bg-yellow-500 text-sm leading-tight transition-all",
