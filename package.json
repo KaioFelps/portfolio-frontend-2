@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && ./scripts/copy-assets.ts",
+    "build": "next build --webpack && ./scripts/copy-assets.ts",
     "start": "node .next/standalone/server.js",
     "lint": "npx biome check --write"
   },
