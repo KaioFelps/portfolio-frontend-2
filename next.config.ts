@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
 
   productionBrowserSourceMaps: false,
+  serverExternalPackages: ["vscode-oniguruma"],
 
   experimental: {
     webpackMemoryOptimizations: true,
