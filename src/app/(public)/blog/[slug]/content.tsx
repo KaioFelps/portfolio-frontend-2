@@ -6,7 +6,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import type { PropsWithChildren } from "react";
 import { AlertBlock } from "@/component/alert-block";
-import { Main } from "@/component/main";
 import SectionHeader from "@/component/section-header";
 import { useKatex } from "@/core/hooks/use-katex";
 import { useStarryNight } from "@/core/hooks/use-starry-night";
@@ -15,7 +14,7 @@ import { formatDateTime } from "@/core/utils";
 
 function Wrapper({ children }: PropsWithChildren) {
   return (
-    <Main>
+    <>
       <Link
         href="/blog"
         className={clsx(
@@ -30,7 +29,7 @@ function Wrapper({ children }: PropsWithChildren) {
       </Link>
 
       {children}
-    </Main>
+    </>
   );
 }
 
