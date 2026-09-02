@@ -8,7 +8,12 @@ type Props = PropsWithChildren<{
 
 export function Heading({ children, className, heading: H = "h1" }: Props) {
   return (
-    <H className={clsx("text-5xl font-bold", className && className)}>
+    <H
+      className={clsx(
+        "max-md:text-4xl md:text-5xl font-bold",
+        className && className,
+      )}
+    >
       {children}
     </H>
   );
