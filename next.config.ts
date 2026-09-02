@@ -12,7 +12,9 @@ const nextConfig: NextConfig = {
 
   productionBrowserSourceMaps: false,
   serverExternalPackages: ["vscode-oniguruma"],
-
+  outputFileTracingIncludes: {
+    "**": ["./node_modules/vscode-oniguruma/**/*.wasm"],
+  },
   experimental: {
     webpackMemoryOptimizations: true,
     optimizePackageImports: [
