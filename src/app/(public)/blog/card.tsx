@@ -16,6 +16,7 @@ export function ArticleCard({
 }) {
   const handleCopyArticleUrl: MouseEventHandler = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const url = new URL(`/blog/${post.slug}`, window.location.href);
     await navigator.clipboard.writeText(url.toString());
     toast.add({ description: "Link copiado!" });
@@ -79,6 +80,7 @@ export function ArticleCard({
               key={`post-${post.id}-blog-article-card-tag-${tag.id}`}
               onClick={(event) => {
                 event.preventDefault();
+                event.stopPropagation();
                 navigate(`/blog?q=${tag.value}&qb=tag`);
               }}
               className="px-2 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500 leading-none text-sm text-yellow-700"
