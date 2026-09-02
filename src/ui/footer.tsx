@@ -16,13 +16,16 @@ export function Footer() {
         )}
       >
         <a href={SocialMedias.linkedin} target="_blank" rel="noreferrer">
-          <LinkedinLogoIcon size="24" weight="fill" /> Linkedin
+          <LinkedinLogoIcon size="24" weight="fill" />
+          <span className="max-sm:hidden"> Github</span>
         </a>
         <a href={SocialMedias.github} target="_blank" rel="noreferrer">
-          <GithubLogoIcon size="24" weight="fill" /> Github
+          <GithubLogoIcon size="24" weight="fill" />
+          <span className="max-sm:hidden"> Behance</span>
         </a>
         <a href={SocialMedias.behance} target="_blank" rel="noreferrer">
-          <BehanceLogoIcon size="24" weight="fill" /> Behance
+          <BehanceLogoIcon size="24" weight="fill" />
+          <span className="max-sm:hidden"> Linkedin</span>
         </a>
       </div>
       <p className="opacity-50 text-xs font-light">
