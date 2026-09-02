@@ -1,11 +1,15 @@
 @layer base {
   a:not([role="button"]):not(.btn) {
-    color: var(--color-yellow-900);
     font-weight: var(--font-weight-medium);
     transition: all var(--default-transition-timing-function) 150ms;
 
     @variant dark {
       color: var(--color-yellow-500);
+    }
+
+    @variant not-dark {
+      /* biome-ignore lint/suspicious/noDuplicateProperties: there ain't no duplication actually */
+      color: var(--color-yellow-900);
     }
 
     &:hover {
@@ -19,6 +23,12 @@
 }
 
 @layer components {
+  .trigger-icon-button {
+    @apply rounded-full border-gray-300 dark:border-d-gray-300 border w-11.5 h-11.5;
+    @apply relative hover:scale-105 transition-all ease-in cursor-default outline-none ring-0;
+    @apply dark:ring-white/15 ring-black/15 focus-within:ring-4;
+  }
+
   .btn {
     outline-style: solid;
     outline-width: 0;
@@ -42,6 +52,7 @@
       opacity: 70;
     }
     &:not(:disabled) {
+      /* biome-ignore lint/style/noDescendingSpecificity: whatever */
       &:active {
         filter: brightness(0.95);
       }
@@ -70,15 +81,15 @@
   }
 
   .btn.ghost-dark {
-    @apply text-white border border-white/10 bg-white/10 [&:not(:disabled)]:hover:bg-white/15 outline-white/30 disabled:border-0;
+    @apply text-white border border-white/10 bg-white/10 not-disabled:hover:bg-white/15 outline-white/30 disabled:border-0;
   }
 
   .btn.ghost {
-    @apply border border-black/10 bg-black/10 [&:not(:disabled)]:hover:bg-black/15 outline-black/30 disabled:border-0;
+    @apply border border-black/10 bg-black/10 not-disabled:hover:bg-black/15 outline-black/30 disabled:border-0;
   }
 
   .btn.danger {
-    @apply text-red-700 border border-red-600 bg-red-600/75 [&:not(:disabled)]:hover:bg-red-600/90 outline-none ring-0 ring-red-700/40 transition-all focus-visible:ring-4 disabled:border-transparent disabled:saturate-0;
+    @apply text-red-700 border border-red-600 bg-red-600/75 not-disabled:hover:bg-red-600/90 outline-none ring-0 ring-red-700/40 transition-all focus-visible:ring-4 disabled:border-transparent disabled:saturate-0;
   }
 
   .btn-sm {
@@ -105,7 +116,7 @@
 
   /* INPUTS */
   .input {
-    @apply px-6 py-4 rounded-full bg-gray-100 border border-gray-300 dark:bg-d-gray-100 dark:border-d-gray-300 focus-within:ring-4 outline-none ring-yellow-500/25 focus-within:border-yellow-500 focus-within:dark:border-yellow-900 transition-all will-change-[shadow,_border-color] text-gray-600 dark:text-d-gray-600;
+    @apply px-6 py-4 rounded-full bg-gray-100 border border-gray-300 dark:bg-d-gray-100 dark:border-d-gray-300 focus-within:ring-4 outline-none ring-yellow-500/25 focus-within:border-yellow-500 focus-within:dark:border-yellow-900 transition-all will-change-[shadow,border-color] text-gray-600 dark:text-d-gray-600;
   }
 
   .input-inner {
@@ -148,6 +159,7 @@
     }
 
     .katex {
+      /* biome-ignore lint/complexity/noImportantStyles: - */
       font-size: inherit !important;
     }
 
@@ -165,7 +177,7 @@
     @apply prose-blockquote:p-4 prose-blockquote:border-l-4 prose-blockquote:border-l-yellow-600 prose-blockquote:bg-gray-100 dark:prose-blockquote:bg-d-gray-100 prose-blockquote:rounded-se-xl prose-blockquote:rounded-ee-xl;
     @apply prose-blockquote:*:last:mb-0!;
 
-    @apply prose-ul:p-0.5 prose-ul:mr-4 prose-ul:ml-4 prose-ol:p-0.5 prose-ol:mr-4 prose-ol:ml-4 prose-ul:prose-li:prose-p:my-1 prose-ol:prose-li:prose-p:my-1 prose-ul:list-disc prose-ol:list-decimal prose-li:prose-p:!mb-0;
+    @apply prose-ul:p-0.5 prose-ul:mr-4 prose-ul:ml-4 prose-ol:p-0.5 prose-ol:mr-4 prose-ol:ml-4 prose-ul:prose-li:prose-p:my-1 prose-ol:prose-li:prose-p:my-1 prose-ul:list-disc prose-ol:list-decimal prose-li:prose-p:mb-0!;
 
     @apply prose-h1:text-3xl prose-h1:font-black prose-h2:text-2xl prose-h2:font-black prose-h3:text-xl prose-h3:font-bold prose-h4:text-lg prose-h4:font-bold prose-h5:text-lg prose-h5:font-semibold prose-h6:text-base prose-h6:font-medium;
 

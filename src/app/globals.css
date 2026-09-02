@@ -166,11 +166,14 @@
     height: 100%;
   }
 
+  :root {
+    @apply not-dark:bg-backgrond dark:bg-d-backgrond not-dark:text-black dark:text-white;
+  }
+
   body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    @apply not-dark:bg-backgrond dark:bg-d-backgrond not-dark:text-black dark:text-white;
   }
 
   /* Decoration containing the actual text */
