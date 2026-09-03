@@ -7,6 +7,7 @@ import { MetaUtilities } from "@/utils/meta";
 import { tryOrServerInternalError } from "@/utils/try-or-server-internal-error";
 import { getPostBySlug } from "./actions";
 import { Content } from "./content";
+import { BlogPostSkeleton } from "./skeleton";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostArticlePage({ params }: Props) {
   return (
     <Main>
-      <Suspense fallback={null}>
+      <Suspense fallback={<BlogPostSkeleton />}>
         <InitialBlogPostsListWrapper params={params} />
       </Suspense>
     </Main>

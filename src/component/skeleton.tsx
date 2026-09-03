@@ -2,19 +2,25 @@ import clsx from "clsx";
 import type { PropsWithChildren } from "react";
 import type { PropsWithClassName } from "@/core/types/props";
 
-type TextProps = { charsCount?: number; noLeading?: boolean };
+type TextProps = {
+  charsCount?: number;
+  noLeading?: boolean;
+  noMaxWidthFull?: boolean;
+};
 
 function TextLine({
   charsCount = 10,
   className,
   noLeading = false,
+  noMaxWidthFull = false,
 }: PropsWithClassName<TextProps>) {
   return (
     <div
       className={clsx(
         "font-medium text-base w-fit rounded-full bg-gray-300 dark:bg-d-gray-300",
-        "animate-pulse select-none break-all wrap-break-word max-w-full",
+        "animate-pulse select-none break-all wrap-break-word",
         !noLeading && "leading-4",
+        !noMaxWidthFull && "max-w-full",
         className,
       )}
     >
@@ -43,7 +49,7 @@ function Heading({
 
 function Chip({ charsCount = 14 }: TextProps) {
   return (
-    <div className="chip c-yellow select-none w-fit break-all wrap-break-word">
+    <div className="chip c-yellow select-none w-fit break-all wrap-break-word py-1.5">
       {"\u00a0".repeat(charsCount)}
     </div>
   );
