@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowLeftIcon } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import clsx from "clsx";
 import Link from "next/link";
@@ -11,23 +10,12 @@ import { useKatex } from "@/core/hooks/use-katex";
 import { useStarryNight } from "@/core/hooks/use-starry-night";
 import type { ExpandedBlogPost } from "@/core/types/presented-entities/expanded-blog-post";
 import { formatDateTime } from "@/core/utils";
+import { GoBackToBlogButton } from "./go-back-button";
 
 function Wrapper({ children }: PropsWithChildren) {
   return (
     <>
-      <Link
-        href="/blog"
-        className={clsx(
-          "cursor-default mb-4 w-fit self-start flex items-center gap-3 px-4 py-2 rounded-full border border-gray-300 dark:border-d-gray-300 leading-none text-sm",
-          "transition-all max-sm:mb-8",
-          "hover:bg-gray-100 active:bg-gray-200",
-          "dark:hover:bg-d-gray-100 dark:active:bg-d-gray-200",
-        )}
-      >
-        <ArrowLeftIcon size="16" weight="bold" />
-        Voltar
-      </Link>
-
+      <GoBackToBlogButton />
       {children}
     </>
   );
